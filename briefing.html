@@ -272,7 +272,7 @@
     font-size:22px;
     font-weight:700;
   }
-  .jtbd-row .card{ display:flex; align-items:center; }
+  /* .jtbd-row .card{ display:flex; align-items:center; } */
   .jtbd-sub{
     display:grid;
     grid-template-columns:1fr 40px 1fr 40px 1fr;
@@ -535,39 +535,31 @@
   .qa-stack{ display:flex; flex-direction:column; gap:14px; }
   .qa-card{ display:flex; flex-direction:column; gap:14px; }
   .qa-q{
+    background:var(--bar-black);
+    color:#fff;
     display:flex;
     gap:12px;
     align-items:baseline;
+    padding:14px 18px;
+    border-radius:6px;
   }
   .qa-q .tag{
     flex:none;
     font-family:var(--font-en);
     font-weight:700;
     font-size:14px;
-    color:#fff;
-    background:var(--primary);
+    color:var(--bar-black);
+    background:#fff;
     border-radius:999px;
     padding:3px 12px;
   }
   .qa-q .text{
     font-weight:700;
-    color:var(--ink);
-    font-size:clamp(19px,2vw,21px);
+    color:#fff;
+    font-size:clamp(18px,1.8vw,20px);
     line-height:1.5;
   }
-  .qa-a{ display:flex; gap:12px; }
-  .qa-a .tag{
-    flex:none;
-    font-family:var(--font-en);
-    font-weight:700;
-    font-size:14px;
-    color:var(--accent);
-    border:1.5px solid var(--accent);
-    border-radius:999px;
-    width:28px;height:28px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .qa-a-body{ display:flex; flex-direction:column; gap:14px; min-width:0; flex:1; }
+  .qa-a-body{ display:flex; flex-direction:column; gap:14px; min-width:0; }
   .qa-intro{
     font-size:18px;
     font-weight:500;
@@ -580,8 +572,8 @@
     flex:none;
     width:26px;height:26px;
     border-radius:50%;
-    background:var(--accent-tint);
-    color:var(--accent);
+    background:var(--accent);
+    color:var(--accent-tint);
     font-family:var(--font-en);
     font-weight:700;
     font-size:13px;
@@ -902,20 +894,20 @@
       <div class="bar">JTBD 陳述</div>
 
       <div class="jtbd-row">
-        <div class="card"><b>當我</b>&nbsp;早上把藥吃完後，過一會兒又想不起來剛剛到底吃了沒</div>
+        <div class="card"><b>當我</b><br>早上把藥吃完後，過一會兒又想不起來剛剛到底吃了沒</div>
         <div class="arrow">→</div>
-        <div class="card"><b>我想要</b>&nbsp;有個方式能立刻確認自己吃過藥了，不用靠記憶</div>
+        <div class="card"><b>我想要</b><br>有個方式能立刻確認自己吃過藥了，不用靠記憶</div>
         <div class="arrow">→</div>
-        <div class="card"><b>這樣我就可以</b>&nbsp;放心不會重複吃藥，也不會漏吃</div>
+        <div class="card"><b>這樣我就可以</b><br>放心不會重複吃藥，也不會漏吃</div>
       </div>
       <div class="jtbd-sub"><span>（情境）</span><span></span><span>（背後動機）</span><span></span><span>（期望的好處）</span></div>
 
       <div class="jtbd-row">
-        <div class="card"><b>當我</b>&nbsp;收到回診單，字太小、也記不清楚是星期幾</div>
+        <div class="card"><b>當我</b><br>收到回診單，字太小、也記不清楚是星期幾</div>
         <div class="arrow">→</div>
-        <div class="card"><b>我想要</b>&nbsp;有人在回診前提醒我確切的時間，不用自己對日曆</div>
+        <div class="card"><b>我想要</b><br>有人在回診前提醒我確切的時間，不用自己對日曆</div>
         <div class="arrow">→</div>
-        <div class="card"><b>這樣我就可以</b>&nbsp;準時到院，不會白跑一趟或錯過回診</div>
+        <div class="card"><b>這樣我就可以</b><br>準時到院，不會白跑一趟或錯過回診</div>
       </div>
     </div>
 
@@ -1155,23 +1147,20 @@
           <span class="tag">Q1</span>
           <span class="text">研究與探索的洞察：如果你有快速田野訪談、競品或市場研究中，發現了哪些關鍵數據或翻轉了什麼前期假設？</span>
         </div>
-        <div class="qa-a">
-          <span class="tag">A</span>
-          <div class="qa-a-body">
-            <div class="qa-points">
-              <div class="qa-point">
-                <span class="num">1</span>
-                <div class="qa-point-body">
-                  <span class="qa-point-title">新增語音功能，中文／台語語音切換</span>
-                  <span class="qa-point-desc">家中有長輩不識字，資料顯示同個年代的人識字率較低，所以決定加入語音播放功能。再加上很多人的母語是台語或客語，為了實作方便，第一版決定加入台語語音切換功能。</span>
-                </div>
+        <div class="qa-a-body">
+          <div class="qa-points">
+            <div class="qa-point">
+              <span class="num">1</span>
+              <div class="qa-point-body">
+                <span class="qa-point-title">新增語音功能，中文／台語語音切換</span>
+                <span class="qa-point-desc">家中有長輩不識字，資料顯示同個年代的人識字率較低，所以決定加入語音播放功能。再加上很多人的母語是台語或客語，為了實作方便，第一版決定加入台語語音切換功能。</span>
               </div>
-              <div class="qa-point">
-                <span class="num">2</span>
-                <div class="qa-point-body">
-                  <span class="qa-point-title">成功畫面的誘惑綁定</span>
-                  <span class="qa-point-desc">觀察不少長輩的手機螢幕保護和桌布都是家人合照，這些照片對他們來說有陪伴感，也會比較珍視，因此把「看合照」和「吃藥」兩個行為進行誘惑綁定：點擊「吃過藥」的按鈕跳出的成功頁可以上傳照片，可以是家人的合照，或喜歡的風景、生活紀錄。</span>
-                </div>
+            </div>
+            <div class="qa-point">
+              <span class="num">2</span>
+              <div class="qa-point-body">
+                <span class="qa-point-title">成功畫面的誘惑綁定</span>
+                <span class="qa-point-desc">觀察不少長輩的手機螢幕保護和桌布都是家人合照，這些照片對他們來說有陪伴感，也會比較珍視，因此把「看合照」和「吃藥」兩個行為進行誘惑綁定：點擊「吃過藥」的按鈕跳出的成功頁可以上傳照片，可以是家人的合照，或喜歡的風景、生活紀錄。</span>
               </div>
             </div>
           </div>
@@ -1183,31 +1172,28 @@
           <span class="tag">Q2</span>
           <span class="text">核心維度的深化：若發現 Concept 還不夠銳利或商業邏輯有缺口，你如何暫緩刻 UI、回頭把邏輯梳理清楚？你捨棄了哪些讓你以為理所當然的設計細節？</span>
         </div>
-        <div class="qa-a">
-          <span class="tag">A</span>
-          <div class="qa-a-body">
-            <p class="qa-intro">原本的規劃更偏向醫療照護與風險控制，功能上更仰賴家屬端的管理，但家屬應該是為了安心才使用 App，而不是承擔更多照顧責任。因此收窄了目標受眾後再重新擬定策略：</p>
-            <div class="qa-points">
-              <div class="qa-point">
-                <span class="num">1</span>
-                <div class="qa-point-body">
-                  <span class="qa-point-title">不需要記錄吃了什麼藥</span>
-                  <span class="qa-point-desc">長輩吃藥幾乎都會先用藥盒分好；如果沒分好，只記錄在手機上，吃錯的機率還是很高，也不一定每次就醫都有家屬陪同、能幫忙紀錄藥品。</span>
-                </div>
+        <div class="qa-a-body">
+          <p class="qa-intro">原本的規劃更偏向醫療照護與風險控制，功能上更仰賴家屬端的管理，但家屬應該是為了安心才使用 App，而不是承擔更多照顧責任。因此收窄了目標受眾後再重新擬定策略：</p>
+          <div class="qa-points">
+            <div class="qa-point">
+              <span class="num">1</span>
+              <div class="qa-point-body">
+                <span class="qa-point-title">不需要記錄吃了什麼藥</span>
+                <span class="qa-point-desc">長輩吃藥幾乎都會先用藥盒分好；如果沒分好，只記錄在手機上，吃錯的機率還是很高，也不一定每次就醫都有家屬陪同、能幫忙紀錄藥品。</span>
               </div>
-              <div class="qa-point">
-                <span class="num">2</span>
-                <div class="qa-point-body">
-                  <span class="qa-point-title">家屬端只跳異常狀況，不需要時時監控</span>
-                  <span class="qa-point-desc">通常沒有同住的家人自己的生活都非常忙碌，一天可能很難得會聯絡一次，如果 App 隨時回報長輩的狀況，會非常干擾生活節奏，結局就是關閉通知，反而增加風險。因此產品設計成只有異常狀況才跳出提醒，如果異常狀況頻繁發生，就應該要由人工介入。</span>
-                </div>
+            </div>
+            <div class="qa-point">
+              <span class="num">2</span>
+              <div class="qa-point-body">
+                <span class="qa-point-title">家屬端只跳異常狀況，不需要時時監控</span>
+                <span class="qa-point-desc">通常沒有同住的家人自己的生活都非常忙碌，一天可能很難得會聯絡一次，如果 App 隨時回報長輩的狀況，會非常干擾生活節奏，結局就是關閉通知，反而增加風險。因此產品設計成只有異常狀況才跳出提醒，如果異常狀況頻繁發生，就應該要由人工介入。</span>
               </div>
-              <div class="qa-point">
-                <span class="num">3</span>
-                <div class="qa-point-body">
-                  <span class="qa-point-title">沒有行事曆，只提醒最近一次的活動</span>
-                  <span class="qa-point-desc">觀察是長輩的生活節奏緩慢，要記的事情不多，只要沒有失智問題的長輩通常記憶力都非常好。加上操作行事曆的難度比較高，所以 App 只留下提醒下一件事的功能作為雙重保險，以及應對輕度失智的狀況。</span>
-                </div>
+            </div>
+            <div class="qa-point">
+              <span class="num">3</span>
+              <div class="qa-point-body">
+                <span class="qa-point-title">沒有行事曆，只提醒最近一次的活動</span>
+                <span class="qa-point-desc">觀察是長輩的生活節奏緩慢，要記的事情不多，只要沒有失智問題的長輩通常記憶力都非常好。加上操作行事曆的難度比較高，所以 App 只留下提醒下一件事的功能作為雙重保險，以及應對輕度失智的狀況。</span>
               </div>
             </div>
           </div>
@@ -1219,11 +1205,8 @@
           <span class="tag">Q3</span>
           <span class="text">（optional）測試後的迭代邏輯：帶第一版 Feature 到使用者面前驗證後，獲得了什麼反饋，又是如何回頭調整方向的？</span>
         </div>
-        <div class="qa-a">
-          <span class="tag">A</span>
-          <div class="qa-a-body">
-            <span class="qa-empty">暫無</span>
-          </div>
+        <div class="qa-a-body">
+          <span class="qa-empty">暫無</span>
         </div>
       </div>
 
