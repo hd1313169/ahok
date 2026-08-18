@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<title>管理設定</title>
+<link rel="stylesheet" href="styles.css">
+<script src="demo-nav.js" defer></script>
+</head>
+<body class="page-backdrop">
+
+<div class="phone-frame">
+  <div class="phone-frame__island"></div>
+  <div class="phone-frame__screen">
+
+<div class="screen screen--family">
+
+  <header class="topbar topbar--compact">
+    <a href="05-family-overview.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="返回今日總結">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"/>
+      </svg>
+    </a>
+    <div class="topbar__text">
+      <span class="topbar__greeting">管理設定</span>
+      <span class="topbar__date">新增或修改陳奶奶的用藥、回診與資料</span>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <a class="settings-row" href="10-manage-meds.html">
+      <div class="card__icon card__icon--warm">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+          <path d="M8.5 8.5l7 7"/>
+        </svg>
+      </div>
+      <div class="settings-row__body">
+        <span class="settings-row__title">藥物管理</span>
+        <span class="settings-row__sub">新增、修改每天要吃的藥</span>
+      </div>
+      <svg class="settings-row__chev" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="settings-row" href="12-edit-appointment.html">
+      <div class="card__icon card__icon--muted">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3.5" y="5" width="17" height="15" rx="2"/>
+          <path d="M3.5 9.5h17"/>
+          <path d="M8 3v4M16 3v4"/>
+        </svg>
+      </div>
+      <div class="settings-row__body">
+        <span class="settings-row__title">回診管理</span>
+        <span class="settings-row__sub">修改下次回診的時間與地點</span>
+      </div>
+      <svg class="settings-row__chev" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+
+    <a class="settings-row" href="13-profile.html">
+      <div class="card__icon card__icon--success">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="3.5"/>
+          <path d="M5 20c1.2-4 4.2-6 7-6s5.8 2 7 6"/>
+        </svg>
+      </div>
+      <div class="settings-row__body">
+        <span class="settings-row__title">個人資料設定</span>
+        <span class="settings-row__sub">陳奶奶的基本資料與緊急聯絡人</span>
+      </div>
+      <svg class="settings-row__chev" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+
+  </main>
+
+</div>
+
+  </div>
+</div>
+
+<nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
+  <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+  </button>
+  <div class="demo-nav__panel">
+    <p class="demo-nav__title">Demo 導覽</p>
+    <p class="demo-nav__group-label">長輩端</p>
+    <a class="demo-nav__link" href="01-today.html">每日提醒</a>
+    <a class="demo-nav__link" href="02-confirmed.html">已完成確認</a>
+    <a class="demo-nav__link" href="03-medlist.html">今天的藥</a>
+    <a class="demo-nav__link" href="04-emergency.html">緊急聯絡</a>
+    <a class="demo-nav__link" href="07-appointment.html">回診提醒</a>
+    <a class="demo-nav__link" href="08-voice-settings.html">語音設定</a>
+    <p class="demo-nav__group-label">家屬端</p>
+    <a class="demo-nav__link" href="05-family-overview.html">今日總結</a>
+    <a class="demo-nav__link" href="06-family-notification.html">通知詳情</a>
+    <a class="demo-nav__link" href="09-family-settings.html" aria-current="page">管理設定</a>
+    <a class="demo-nav__link" href="10-manage-meds.html">藥物管理</a>
+    <a class="demo-nav__link" href="11-edit-med.html">新增／編輯藥物</a>
+    <a class="demo-nav__link" href="12-edit-appointment.html">編輯回診</a>
+    <a class="demo-nav__link" href="13-profile.html">個人資料設定</a>
+    <p class="demo-nav__group-label">其他</p>
+    <a class="demo-nav__link" href="index.html">Prototype 總覽</a>
+    <a class="demo-nav__link" href="../briefing.html">完整簡報 briefing.html</a>
+  </div>
+</nav>
+
+</body>
+</html>

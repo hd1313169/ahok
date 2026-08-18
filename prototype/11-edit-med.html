@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<title>新增／編輯藥物</title>
+<link rel="stylesheet" href="styles.css">
+<script src="demo-nav.js" defer></script>
+</head>
+<body class="page-backdrop">
+
+<div class="phone-frame">
+  <div class="phone-frame__island"></div>
+  <div class="phone-frame__screen">
+
+<div class="screen screen--family">
+
+  <header class="topbar topbar--compact">
+    <a href="10-manage-meds.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="返回藥物管理">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"/>
+      </svg>
+    </a>
+    <div class="topbar__text">
+      <span class="topbar__greeting" data-form-title>編輯藥物</span>
+      <span class="topbar__date">填好之後陳奶奶的提醒會自動更新</span>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <form class="stack" onsubmit="return false;">
+
+      <div class="field">
+        <label for="med-name">藥物名稱／說法</label>
+        <input type="text" id="med-name" name="med-name" data-form-field="name" value="早餐後的藥" placeholder="例如：早餐後的藥">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="med-count">顆數</label>
+          <input type="number" id="med-count" name="med-count" data-form-field="count" value="3" min="1" max="20">
+        </div>
+        <div class="field">
+          <label for="med-time">提醒時間</label>
+          <input type="time" id="med-time" name="med-time" data-form-field="time" value="08:00">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="med-note">服用備註（會顯示在提醒卡片上）</label>
+        <textarea id="med-note" name="med-note" data-form-field="note" placeholder="例如：飯後配溫水吃，記得坐著慢慢吃就好，不用急。">飯後配溫水吃，記得坐著慢慢吃就好，不用急。</textarea>
+      </div>
+
+      <button type="button" class="btn btn--success" onclick="location.href='10-manage-meds.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12.5l2.7 2.7L16 9.8"/>
+        </svg>
+        儲存
+      </button>
+
+      <a class="danger-link" href="10-manage-meds.html" data-form-delete>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/>
+        </svg>
+        刪除這筆用藥
+      </a>
+
+    </form>
+
+  </main>
+
+</div>
+
+  </div>
+</div>
+
+<nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
+  <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+  </button>
+  <div class="demo-nav__panel">
+    <p class="demo-nav__title">Demo 導覽</p>
+    <p class="demo-nav__group-label">長輩端</p>
+    <a class="demo-nav__link" href="01-today.html">每日提醒</a>
+    <a class="demo-nav__link" href="02-confirmed.html">已完成確認</a>
+    <a class="demo-nav__link" href="03-medlist.html">今天的藥</a>
+    <a class="demo-nav__link" href="04-emergency.html">緊急聯絡</a>
+    <a class="demo-nav__link" href="07-appointment.html">回診提醒</a>
+    <a class="demo-nav__link" href="08-voice-settings.html">語音設定</a>
+    <p class="demo-nav__group-label">家屬端</p>
+    <a class="demo-nav__link" href="05-family-overview.html">今日總結</a>
+    <a class="demo-nav__link" href="06-family-notification.html">通知詳情</a>
+    <a class="demo-nav__link" href="09-family-settings.html">管理設定</a>
+    <a class="demo-nav__link" href="10-manage-meds.html">藥物管理</a>
+    <a class="demo-nav__link" href="11-edit-med.html" aria-current="page">新增／編輯藥物</a>
+    <a class="demo-nav__link" href="12-edit-appointment.html">編輯回診</a>
+    <a class="demo-nav__link" href="13-profile.html">個人資料設定</a>
+    <p class="demo-nav__group-label">其他</p>
+    <a class="demo-nav__link" href="index.html">Prototype 總覽</a>
+    <a class="demo-nav__link" href="../briefing.html">完整簡報 briefing.html</a>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var isAdd = params.get('mode') === 'add';
+    if (isAdd) {
+      document.querySelector('[data-form-title]').textContent = '新增藥物';
+      document.getElementById('med-name').value = '';
+      document.getElementById('med-count').value = '';
+      document.getElementById('med-time').value = '';
+      document.getElementById('med-note').value = '';
+      document.getElementById('med-name').placeholder = '例如：睡前的藥';
+      var del = document.querySelector('[data-form-delete]');
+      if (del) del.style.display = 'none';
+    }
+  })();
+</script>
+
+</body>
+</html>

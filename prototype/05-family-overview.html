@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<title>家屬視角：今日狀態總覽</title>
+<link rel="stylesheet" href="styles.css">
+<script src="voice.js" defer></script>
+<script src="demo-nav.js" defer></script>
+<style>
+  .family-tabbar {
+    display: flex;
+    gap: 8px;
+    padding: 0 var(--space-3) var(--space-2);
+  }
+  .family-tab {
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.16);
+    color: #FFFFFF;
+  }
+  .family-tab--active {
+    background: #FFFFFF;
+    color: var(--color-primary);
+  }
+
+  .summary-rollup {
+    text-align: center;
+  }
+  .summary-rollup__label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    margin: 0 0 4px;
+  }
+  .summary-rollup__stat {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .detail-disclosure {
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .detail-disclosure summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  .detail-disclosure summary::-webkit-details-marker { display: none; }
+  .detail-disclosure summary .chev {
+    width: 22px;
+    height: 22px;
+    stroke: var(--color-primary);
+    transition: transform 0.15s ease;
+    flex-shrink: 0;
+  }
+  .detail-disclosure[open] summary .chev {
+    transform: rotate(180deg);
+  }
+  .detail-disclosure__body {
+    padding: 0 var(--space-3) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+</style>
+</head>
+<body class="page-backdrop">
+
+<div class="phone-frame">
+  <div class="phone-frame__island"></div>
+  <div class="phone-frame__screen">
+
+<div class="screen screen--family">
+
+  <header class="topbar" style="padding-bottom:0; justify-content:space-between;">
+    <div style="display:flex; align-items:center; gap:var(--space-2);">
+      <div class="topbar__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20s-7-4.35-9.5-9A5 5 0 0112 5a5 5 0 019.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
+        </svg>
+      </div>
+      <div class="topbar__text">
+        <span class="topbar__greeting">陳奶奶的今日總結</span>
+        <span class="topbar__date">8 月 17 日・星期一</span>
+      </div>
+    </div>
+    <a href="09-family-settings.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="管理設定：新增/修改用藥、回診、資料">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+      </svg>
+    </a>
+  </header>
+  <div class="family-tabbar" style="margin-top:var(--space-2);">
+    <span class="family-tab family-tab--active">今日總結</span>
+    <span class="family-tab">歷史紀錄</span>
+  </div>
+
+  <main class="content">
+
+    <div class="family-alert-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5L2.5 20h19L12 3.5z"/>
+        <path d="M12 9.5v4.2"/>
+        <path d="M12 16.8v.2" stroke-width="3"/>
+      </svg>
+      例外提醒：午餐後的藥還沒確認吃，已經超過 40 分鐘
+      <button type="button" class="speak-btn speak-btn--compact" aria-label="播放語音" data-speak="例外提醒，午餐後的藥還沒確認吃，已經超過四十分鐘。" data-speak-locale="zh">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+          <path d="M16.5 8.5a5 5 0 010 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="card card--has-speak summary-rollup">
+      <button type="button" class="speak-btn speak-btn--corner" aria-label="播放語音" data-speak="今日進度，三次裡面，已經完成一次。" data-speak-locale="zh">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+          <path d="M16.5 8.5a5 5 0 010 7"/>
+        </svg>
+      </button>
+      <p class="summary-rollup__label">今日進度</p>
+      <p class="summary-rollup__stat">1 / 3 次已完成</p>
+    </div>
+
+    <details class="detail-disclosure">
+      <summary>
+        查看今日詳細紀錄
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="detail-disclosure__body">
+
+        <div class="timeslot timeslot--done">
+          <div class="card__icon card__icon--success">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+              <path d="M8.5 8.5l7 7"/>
+            </svg>
+          </div>
+          <div class="timeslot__body">
+            <span class="timeslot__time">早上 8:02 確認</span>
+            <span class="timeslot__name">早餐後的藥</span>
+          </div>
+          <div class="timeslot__actions">
+            <span class="status-tag status-tag--done">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l5 5L19 7"/></svg>
+              吃過了
+            </span>
+            <button type="button" class="speak-btn speak-btn--compact" aria-label="播放語音" data-speak="早上八點零二分確認，早餐後的藥，吃過了。" data-speak-locale="zh">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+                <path d="M16.5 8.5a5 5 0 010 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeslot timeslot--pending">
+          <div class="card__icon card__icon--warm">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+              <path d="M8.5 8.5l7 7"/>
+            </svg>
+          </div>
+          <div class="timeslot__body">
+            <span class="timeslot__time">中午 12:00 應提醒</span>
+            <span class="timeslot__name">午餐後的藥</span>
+          </div>
+          <div class="timeslot__actions">
+            <span class="status-tag status-tag--pending">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+              未確認
+            </span>
+            <button type="button" class="speak-btn speak-btn--compact" aria-label="播放語音" data-speak="中午十二點應提醒，午餐後的藥，尚未確認。" data-speak-locale="zh">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+                <path d="M16.5 8.5a5 5 0 010 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeslot timeslot--neutral">
+          <div class="card__icon card__icon--muted">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3.5 2"/>
+            </svg>
+          </div>
+          <div class="timeslot__body">
+            <span class="timeslot__time">晚上 6:30</span>
+            <span class="timeslot__name">晚餐後的藥</span>
+          </div>
+          <div class="timeslot__actions">
+            <span class="status-tag status-tag--neutral">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+              尚未到時間
+            </span>
+            <button type="button" class="speak-btn speak-btn--compact" aria-label="播放語音" data-speak="晚上六點半，晚餐後的藥，尚未到時間。" data-speak-locale="zh">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+                <path d="M16.5 8.5a5 5 0 010 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="card card--has-speak">
+      <button type="button" class="speak-btn speak-btn--corner" aria-label="播放語音" data-speak="下次回診，八月二十一日星期五，上午九點半，心臟內科。" data-speak-locale="zh">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+          <path d="M16.5 8.5a5 5 0 010 7"/>
+        </svg>
+      </button>
+      <div class="card__row">
+        <div class="card__icon card__icon--muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="5" width="17" height="15" rx="2"/>
+            <path d="M3.5 9.5h17"/>
+            <path d="M8 3v4M16 3v4"/>
+          </svg>
+        </div>
+        <div>
+          <p class="card__label">下次回診</p>
+          <p class="text-body text-body--strong" style="font-size:19px;">8 月 21 日（五）上午 9:30・心臟內科</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn btn--primary" href="06-family-notification.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/>
+        <path d="M9.5 17.5a2.5 2.5 0 005 0"/>
+      </svg>
+      查看未服藥提醒
+    </a>
+
+    <p class="text-body" style="text-align:center; font-size:15px;">這是每日總結，平常不需要一直查看；只有像上面這樣的例外狀況，才會另外提醒您。</p>
+
+  </main>
+
+</div>
+
+  </div>
+</div>
+
+<nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
+  <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+  </button>
+  <div class="demo-nav__panel">
+    <p class="demo-nav__title">Demo 導覽</p>
+    <p class="demo-nav__group-label">長輩端</p>
+    <a class="demo-nav__link" href="01-today.html">每日提醒</a>
+    <a class="demo-nav__link" href="02-confirmed.html">已完成確認</a>
+    <a class="demo-nav__link" href="03-medlist.html">今天的藥</a>
+    <a class="demo-nav__link" href="04-emergency.html">緊急聯絡</a>
+    <a class="demo-nav__link" href="07-appointment.html">回診提醒</a>
+    <a class="demo-nav__link" href="08-voice-settings.html">語音設定</a>
+    <p class="demo-nav__group-label">家屬端</p>
+    <a class="demo-nav__link" href="05-family-overview.html" aria-current="page">今日總結</a>
+    <a class="demo-nav__link" href="06-family-notification.html">通知詳情</a>
+    <a class="demo-nav__link" href="09-family-settings.html">管理設定</a>
+    <a class="demo-nav__link" href="10-manage-meds.html">藥物管理</a>
+    <a class="demo-nav__link" href="11-edit-med.html">新增／編輯藥物</a>
+    <a class="demo-nav__link" href="12-edit-appointment.html">編輯回診</a>
+    <a class="demo-nav__link" href="13-profile.html">個人資料設定</a>
+    <p class="demo-nav__group-label">其他</p>
+    <a class="demo-nav__link" href="index.html">Prototype 總覽</a>
+    <a class="demo-nav__link" href="../briefing.html">完整簡報 briefing.html</a>
+  </div>
+</nav>
+
+</body>
+</html>

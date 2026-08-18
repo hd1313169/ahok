@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<title>個人資料設定</title>
+<link rel="stylesheet" href="styles.css">
+<script src="demo-nav.js" defer></script>
+</head>
+<body class="page-backdrop">
+
+<div class="phone-frame">
+  <div class="phone-frame__island"></div>
+  <div class="phone-frame__screen">
+
+<div class="screen screen--family">
+
+  <header class="topbar topbar--compact">
+    <a href="09-family-settings.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="返回管理設定">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"/>
+      </svg>
+    </a>
+    <div class="topbar__text">
+      <span class="topbar__greeting">個人資料設定</span>
+      <span class="topbar__date">陳奶奶的基本資料</span>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <form class="stack" onsubmit="return false;">
+
+      <div class="field">
+        <label for="p-name">姓名</label>
+        <input type="text" id="p-name" value="陳奶奶">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="p-age">年齡</label>
+          <input type="number" id="p-age" value="72">
+        </div>
+        <div class="field">
+          <label for="p-address">居住地</label>
+          <input type="text" id="p-address" value="家中獨居">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="divider" style="margin: var(--space-2) 0;"></div>
+
+    <p class="card__label" style="margin:0;">緊急聯絡人</p>
+
+    <a class="manage-list-row" href="#">
+      <div class="card__icon card__icon--warm">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5c0-1 .8-2 2-2h2.2c.5 0 .9.3 1 .8l1 3.6c.1.4 0 .9-.3 1.2L8.4 10c1 2.3 2.8 4.1 5.1 5.1l1.4-1.5c.3-.3.8-.4 1.2-.3l3.6 1c.5.1.8.5.8 1V18c0 1.2-1 2-2.2 2C10.8 20 4 13.2 4 5z"/>
+        </svg>
+      </div>
+      <div class="manage-list-row__body">
+        <span class="manage-list-row__title">陳阿明（兒子）</span>
+        <span class="manage-list-row__sub">0912-345-678・預設優先聯絡</span>
+      </div>
+      <span class="manage-list-row__edit" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+      </span>
+    </a>
+
+    <a class="manage-list-row" href="#">
+      <div class="card__icon card__icon--muted">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5c0-1 .8-2 2-2h2.2c.5 0 .9.3 1 .8l1 3.6c.1.4 0 .9-.3 1.2L8.4 10c1 2.3 2.8 4.1 5.1 5.1l1.4-1.5c.3-.3.8-.4 1.2-.3l3.6 1c.5.1.8.5.8 1V18c0 1.2-1 2-2.2 2C10.8 20 4 13.2 4 5z"/>
+        </svg>
+      </div>
+      <div class="manage-list-row__body">
+        <span class="manage-list-row__title">居家照護中心</span>
+        <span class="manage-list-row__sub">02-2345-6789</span>
+      </div>
+      <span class="manage-list-row__edit" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+      </span>
+    </a>
+
+    <a class="btn btn--outline" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+      新增聯絡人
+    </a>
+
+    <button type="button" class="btn btn--success" onclick="location.href='09-family-settings.html'">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8 12.5l2.7 2.7L16 9.8"/>
+      </svg>
+      儲存
+    </button>
+
+  </main>
+
+</div>
+
+  </div>
+</div>
+
+<nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
+  <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+  </button>
+  <div class="demo-nav__panel">
+    <p class="demo-nav__title">Demo 導覽</p>
+    <p class="demo-nav__group-label">長輩端</p>
+    <a class="demo-nav__link" href="01-today.html">每日提醒</a>
+    <a class="demo-nav__link" href="02-confirmed.html">已完成確認</a>
+    <a class="demo-nav__link" href="03-medlist.html">今天的藥</a>
+    <a class="demo-nav__link" href="04-emergency.html">緊急聯絡</a>
+    <a class="demo-nav__link" href="07-appointment.html">回診提醒</a>
+    <a class="demo-nav__link" href="08-voice-settings.html">語音設定</a>
+    <p class="demo-nav__group-label">家屬端</p>
+    <a class="demo-nav__link" href="05-family-overview.html">今日總結</a>
+    <a class="demo-nav__link" href="06-family-notification.html">通知詳情</a>
+    <a class="demo-nav__link" href="09-family-settings.html">管理設定</a>
+    <a class="demo-nav__link" href="10-manage-meds.html">藥物管理</a>
+    <a class="demo-nav__link" href="11-edit-med.html">新增／編輯藥物</a>
+    <a class="demo-nav__link" href="12-edit-appointment.html">編輯回診</a>
+    <a class="demo-nav__link" href="13-profile.html" aria-current="page">個人資料設定</a>
+    <p class="demo-nav__group-label">其他</p>
+    <a class="demo-nav__link" href="index.html">Prototype 總覽</a>
+    <a class="demo-nav__link" href="../briefing.html">完整簡報 briefing.html</a>
+  </div>
+</nav>
+
+</body>
+</html>

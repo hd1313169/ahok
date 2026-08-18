@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<title>今天的藥總覽</title>
+<link rel="stylesheet" href="styles.css">
+<script src="voice.js" defer></script>
+<script src="demo-nav.js" defer></script>
+</head>
+<body class="page-backdrop">
+
+<div class="phone-frame">
+  <div class="phone-frame__island"></div>
+  <div class="phone-frame__screen">
+
+<div class="screen">
+
+  <header class="topbar topbar--compact">
+    <a href="01-today.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="返回每日提醒">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"/>
+      </svg>
+    </a>
+    <div class="topbar__text">
+      <span class="topbar__greeting">今天的藥</span>
+      <span class="topbar__date">8 月 17 日・星期一</span>
+    </div>
+  </header>
+
+  <main class="content content--balanced">
+
+    <div style="display:flex; justify-content:flex-end;">
+      <button type="button" class="speak-btn" aria-label="播放今天的藥語音" data-speak="早上八點，早餐後的藥，三顆，吃過了。中午十二點，午餐後的藥，兩顆，可以吃了。晚上六點半，晚餐後的藥，三顆，尚未到時間。" data-speak-code="03-medlist-all">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+          <path d="M16.5 8.5a5 5 0 010 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="timeslot timeslot--done">
+      <div class="card__icon card__icon--success">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+          <path d="M8.5 8.5l7 7"/>
+        </svg>
+      </div>
+      <div class="timeslot__body">
+        <span class="timeslot__time">早上 8:00</span>
+        <span class="timeslot__name">早餐後的藥（3 顆）</span>
+        <span class="status-tag status-tag--done">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l5 5L19 7"/></svg>
+          吃過了
+        </span>
+      </div>
+    </div>
+
+    <div class="timeslot timeslot--active">
+      <div class="card__icon card__icon--muted">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+          <path d="M8.5 8.5l7 7"/>
+        </svg>
+      </div>
+      <div class="timeslot__body">
+        <span class="timeslot__time">中午 12:00</span>
+        <span class="timeslot__name">午餐後的藥（2 顆）</span>
+        <span class="status-tag status-tag--neutral">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17.5a2.5 2.5 0 005 0"/></svg>
+          可以吃了
+        </span>
+      </div>
+    </div>
+
+    <div class="timeslot timeslot--neutral">
+      <div class="card__icon card__icon--muted">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+          <path d="M8.5 8.5l7 7"/>
+        </svg>
+      </div>
+      <div class="timeslot__body">
+        <span class="timeslot__time">晚上 6:30</span>
+        <span class="timeslot__name">晚餐後的藥（3 顆）</span>
+        <span class="status-tag status-tag--neutral">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          尚未到時間
+        </span>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a class="bottom-nav__item" href="01-today.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11.5L12 4l8 7.5"/>
+        <path d="M6 10v9.5a1 1 0 001 1h10a1 1 0 001-1V10"/>
+      </svg>
+      每日提醒
+    </a>
+    <a class="bottom-nav__item" href="03-medlist.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="3.5" width="14" height="17" rx="2"/>
+        <path d="M9 3.5V2.8c0-.6.4-1 1-1h4c.6 0 1 .4 1 1v.7"/>
+        <path d="M8.5 10h7M8.5 13.5h7M8.5 17h4.5"/>
+      </svg>
+      今天的藥
+    </a>
+    <a class="bottom-nav__item" href="07-appointment.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="5" width="17" height="15" rx="2"/>
+        <path d="M3.5 9.5h17"/>
+        <path d="M8 3v4M16 3v4"/>
+      </svg>
+      回診提醒
+    </a>
+    <a class="bottom-nav__item" href="04-emergency.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5c0-1 .8-2 2-2h2.2c.5 0 .9.3 1 .8l1 3.6c.1.4 0 .9-.3 1.2L8.4 10c1 2.3 2.8 4.1 5.1 5.1l1.4-1.5c.3-.3.8-.4 1.2-.3l3.6 1c.5.1.8.5.8 1V18c0 1.2-1 2-2.2 2C10.8 20 4 13.2 4 5z"/>
+      </svg>
+      緊急聯絡
+    </a>
+  </nav>
+
+</div>
+
+  </div>
+</div>
+
+<nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
+  <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+  </button>
+  <div class="demo-nav__panel">
+    <p class="demo-nav__title">Demo 導覽</p>
+    <p class="demo-nav__group-label">長輩端</p>
+    <a class="demo-nav__link" href="01-today.html">每日提醒</a>
+    <a class="demo-nav__link" href="02-confirmed.html">已完成確認</a>
+    <a class="demo-nav__link" href="03-medlist.html" aria-current="page">今天的藥</a>
+    <a class="demo-nav__link" href="04-emergency.html">緊急聯絡</a>
+    <a class="demo-nav__link" href="07-appointment.html">回診提醒</a>
+    <a class="demo-nav__link" href="08-voice-settings.html">語音設定</a>
+    <p class="demo-nav__group-label">家屬端</p>
+    <a class="demo-nav__link" href="05-family-overview.html">今日總結</a>
+    <a class="demo-nav__link" href="06-family-notification.html">通知詳情</a>
+    <a class="demo-nav__link" href="09-family-settings.html">管理設定</a>
+    <a class="demo-nav__link" href="10-manage-meds.html">藥物管理</a>
+    <a class="demo-nav__link" href="11-edit-med.html">新增／編輯藥物</a>
+    <a class="demo-nav__link" href="12-edit-appointment.html">編輯回診</a>
+    <a class="demo-nav__link" href="13-profile.html">個人資料設定</a>
+    <p class="demo-nav__group-label">其他</p>
+    <a class="demo-nav__link" href="index.html">Prototype 總覽</a>
+    <a class="demo-nav__link" href="../briefing.html">完整簡報 briefing.html</a>
+  </div>
+</nav>
+
+</body>
+</html>
