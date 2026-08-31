@@ -33,7 +33,7 @@
   <main class="content content--balanced">
 
     <div style="display:flex; justify-content:flex-end;">
-      <button type="button" class="speak-btn" aria-label="播放今天的藥語音" data-speak="早上八點，早餐後的藥，三顆，吃過了。中午十二點，午餐後的藥，兩顆，可以吃了。晚上六點半，晚餐後的藥，三顆，尚未到時間。" data-speak-code="03-medlist-all">
+      <button type="button" class="speak-btn" aria-label="播放今天的藥語音" data-speak="早上八點，早餐後的藥，三顆，顧心臟、顧血壓的藥，吃過了。中午十二點，午餐後的藥，兩顆，顧血糖的藥，可以吃了。晚上六點半，晚餐後的藥，三顆，顧骨頭的藥，尚未到時間。" data-speak-code="03-medlist-all">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 9v6h4l5 5V4L8 9H4z"/>
           <path d="M16.5 8.5a5 5 0 010 7"/>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="timeslot timeslot--done">
-      <div class="card__icon card__icon--success">
+      <div class="card__icon card__icon--warm">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
           <path d="M8.5 8.5l7 7"/>
@@ -51,6 +51,7 @@
       <div class="timeslot__body">
         <span class="timeslot__time">早上 8:00</span>
         <span class="timeslot__name">早餐後的藥（3 顆）</span>
+        <span class="timeslot__caption">顧心臟、顧血壓的藥</span>
         <span class="status-tag status-tag--done">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l5 5L19 7"/></svg>
           吃過了
@@ -68,6 +69,7 @@
       <div class="timeslot__body">
         <span class="timeslot__time">中午 12:00</span>
         <span class="timeslot__name">午餐後的藥（2 顆）</span>
+        <span class="timeslot__caption">顧血糖的藥</span>
         <span class="status-tag status-tag--neutral">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1112 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17.5a2.5 2.5 0 005 0"/></svg>
           可以吃了
@@ -76,7 +78,7 @@
     </div>
 
     <div class="timeslot timeslot--neutral">
-      <div class="card__icon card__icon--muted">
+      <div class="card__icon card__icon--earth">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
           <path d="M8.5 8.5l7 7"/>
@@ -85,6 +87,7 @@
       <div class="timeslot__body">
         <span class="timeslot__time">晚上 6:30</span>
         <span class="timeslot__name">晚餐後的藥（3 顆）</span>
+        <span class="timeslot__caption">顧骨頭的藥</span>
         <span class="status-tag status-tag--neutral">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
           尚未到時間

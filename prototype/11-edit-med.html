@@ -54,6 +54,21 @@
         <textarea id="med-note" name="med-note" data-form-field="note" placeholder="例如：飯後配溫水吃，記得坐著慢慢吃就好，不用急。">飯後配溫水吃，記得坐著慢慢吃就好，不用急。</textarea>
       </div>
 
+      <div class="field">
+        <label for="med-caption">用途說明（選填，白話一句話就好，會顯示在提醒卡片上）</label>
+        <input type="text" id="med-caption" name="med-caption" data-form-field="caption" value="顧心臟、顧血壓的藥" placeholder="例如：顧心臟的藥">
+      </div>
+
+      <div class="field">
+        <label id="med-accent-label">辨識顏色（選填，跟家裡藥盒的顏色對應就好）</label>
+        <div class="accent-picker" role="radiogroup" aria-labelledby="med-accent-label">
+          <button type="button" class="accent-swatch accent-swatch--sun is-selected" aria-pressed="true" aria-label="暖陽橘"></button>
+          <button type="button" class="accent-swatch accent-swatch--pine" aria-pressed="false" aria-label="松針綠"></button>
+          <button type="button" class="accent-swatch accent-swatch--earth" aria-pressed="false" aria-label="大地棕"></button>
+          <button type="button" class="accent-swatch accent-swatch--none" aria-pressed="false" aria-label="不設定顏色">無</button>
+        </div>
+      </div>
+
       <button type="button" class="btn btn--success" onclick="location.href='10-manage-meds.html'">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -107,6 +122,17 @@
 
 <script>
   (function () {
+    Array.prototype.slice.call(document.querySelectorAll('.accent-swatch')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        Array.prototype.slice.call(document.querySelectorAll('.accent-swatch')).forEach(function (b) {
+          b.classList.remove('is-selected');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-selected');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+
     var params = new URLSearchParams(location.search);
     var isAdd = params.get('mode') === 'add';
     if (isAdd) {
@@ -115,7 +141,13 @@
       document.getElementById('med-count').value = '';
       document.getElementById('med-time').value = '';
       document.getElementById('med-note').value = '';
+      document.getElementById('med-caption').value = '';
       document.getElementById('med-name').placeholder = '例如：睡前的藥';
+      Array.prototype.slice.call(document.querySelectorAll('.accent-swatch')).forEach(function (btn) {
+        var isNone = btn.classList.contains('accent-swatch--none');
+        btn.classList.toggle('is-selected', isNone);
+        btn.setAttribute('aria-pressed', isNone ? 'true' : 'false');
+      });
       var del = document.querySelector('[data-form-delete]');
       if (del) del.style.display = 'none';
     }

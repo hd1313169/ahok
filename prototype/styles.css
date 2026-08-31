@@ -22,6 +22,9 @@
   --color-success-deep: #1F5A44;
   --color-accent-deep: #8F3415; /* 白字對比 7.87:1，清楚通過 AAA */
 
+  /* 辨識色彩配件（家屬選填，呼應實體藥盒既有配色，非狀態語意色，不可與 success/danger 混用） */
+  --color-swatch-earth: #8A6D3F; /* 大地棕，暖色系，既定色彩系統之外的第三個中性選項 */
+
   /* 陰影（既定規格未定義，本次擴充：圓潤卡片＋輕微陰影） */
   --shadow-card: 0 4px 16px rgba(26, 75, 62, 0.10), 0 1px 3px rgba(26, 75, 62, 0.08);
   --shadow-button: 0 6px 20px rgba(224, 90, 43, 0.28);
@@ -311,6 +314,47 @@ html.embedded .phone-frame__screen .screen {
 }
 .card__icon--danger svg { stroke: var(--color-danger); }
 
+.card__icon--earth {
+  background: rgba(138, 109, 63, 0.14);
+}
+.card__icon--earth svg { stroke: var(--color-swatch-earth); }
+
+/* ============================================================
+   辨識色彩配件：家屬選填，呼應實體藥盒既有配色
+   直接讓藥物圖示徽章變色（不是另外的小標記）——
+   徽章原本的顏色只是狀態的次要複本，狀態本身已經由旁邊的
+   狀態標籤（色彩＋圖示＋文字）獨立完整地表達，因此徽章
+   可以安心改做辨識色，不會損及狀態的三重編碼
+   ============================================================ */
+
+/* 家屬設定畫面：辨識顏色選色器（純展示用，呼應實體藥盒配色，非狀態語意色） */
+.accent-picker {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+.accent-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  border: 3px solid transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.accent-swatch--sun { background: var(--color-accent); }
+.accent-swatch--pine { background: var(--color-primary); }
+.accent-swatch--earth { background: var(--color-swatch-earth); }
+.accent-swatch--none {
+  background: var(--color-secondary);
+  border-color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+.accent-swatch.is-selected {
+  border-color: var(--color-text);
+}
+
 /* ============================================================
    狀態標籤（雙重編碼：色彩 + 文字 + 圖示）
    ============================================================ */
@@ -515,6 +559,17 @@ html.embedded .phone-frame__screen .screen {
   font-size: 21px;
   font-weight: 700;
   color: var(--color-text);
+}
+
+.timeslot__caption {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.manage-list-row__caption {
+  font-size: 14px;
+  color: var(--color-text-secondary);
 }
 
 /* ============================================================
