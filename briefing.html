@@ -584,12 +584,99 @@
   }
   .insight-body .qa-point-title{ font-size:24px; }
   .insight-body .qa-point-desc{ font-size:20px; }
+  .insight-sections--triple{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    align-items:stretch;
+  }
+  .insight-sections--triple .insight-section{ gap:0; height:100%; }
+  .insight-card{
+    background:#F9F9F9;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:38px 34px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    height:100%;
+    transition:box-shadow .2s ease, transform .2s ease;
+  }
+  .insight-card:hover{ box-shadow:0 8px 24px rgba(0,0,0,.08); transform:translateY(-3px); }
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .stat-strip-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:8px;
+  }
+  .stat-strip-icon{ width:36px; height:36px; color:var(--accent); margin-bottom:8px; }
+  .stat-strip-icon svg{ width:100%; height:100%; }
+  .stat-strip-title{
+    font-size:16px;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.5;
+    margin:0 0 4px;
+  }
+  .stat-strip-source{
+    font-size:13px;
+    font-weight:500;
+    color:#9A9A9A;
+    margin:0;
+  }
+  @media (max-width:820px){ .stat-strip{ grid-template-columns:1fr 1fr; } }
+  .insight-card-icon{
+    width:56px;height:56px;
+    flex:none;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:var(--accent-tint);
+    color:var(--accent);
+  }
+  .insight-card-icon svg{ width:32px;height:32px; }
+  .insight-card .panel-title{ color:var(--accent); margin:0; }
+  .insight-card .qa-point-desc{ font-size:19px; line-height:1.7; }
+  .insight-card-block{ display:flex; flex-direction:column; gap:4px; }
+  .insight-card-block + .insight-card-block{ margin-top:4px; }
+  .insight-card-label{
+    font-size:13px;
+    font-weight:700;
+    color:var(--accent);
+    letter-spacing:.04em;
+  }
+  .insight-card-subhead{
+    font-size:24px;
+    font-weight:700;
+    color:var(--ink);
+    margin:2px 0 0;
+  }
+  .insight-card--decision{ background:var(--accent); }
+  .insight-card--decision .panel-title{ color:#fff; }
+  .insight-card--decision .qa-point-desc{ color:#fff; }
+  .insight-card--decision .insight-card-label{ color:rgba(255,255,255,.85); }
+  .insight-card--decision .insight-card-subhead{ color:#fff; }
+  .insight-card--decision .insight-card-icon{ background:rgba(255,255,255,.22); color:#fff; }
+  .slide-eyebrow{
+    font-size:clamp(14px,1.2vw,16px);
+    font-weight:700;
+    color:var(--accent);
+    margin:0 0 6px;
+    letter-spacing:.02em;
+  }
+  .slide-eyebrow--on-accent{ color:#fff; }
+  @media (max-width:900px){ .insight-sections--triple{ grid-template-columns:1fr; } }
   .evidence-grid--cols-3{ grid-template-columns:repeat(3,1fr); }
   .evidence-grid--cols-3 .evidence-stat{ font-size:clamp(32px,4.5vw,52px); }
   @media (max-width:700px){ .evidence-grid--cols-3{ grid-template-columns:1fr; } }
 
   /* ---- INSIGHT 1 (split text / stat-block layout) ---- */
-  .insight1-slide .panel-title{ font-size:24px; color:#888888; }
+  .insight1-slide .panel-title{ color:var(--accent); }
   .insight1-layout{
     display:flex;
     gap:clamp(28px,4vw,56px);
@@ -607,7 +694,7 @@
     gap:44px;
   }
   .insight1-desc{
-    font-size:20px;
+    font-size:19px;
     font-weight:500;
     line-height:1.7;
     color:var(--ink-soft);
@@ -635,6 +722,9 @@
   .insight1-stat .evidence-stat{ color:#fff; margin:0; font-size:clamp(50px,5.5vw,70px); }
   .insight1-stat .evidence-stat .pct{ font-size:clamp(32px,3.5vw,45px); margin-left:.12em; }
   .insight1-stat .evidence-label{ color:rgba(255,255,255,.88); margin:0; font-size:17px; line-height:1.4; }
+  .insight1-stat--muted{ background:#F4F4F4; }
+  .insight1-stat--muted .evidence-stat{ color:var(--accent); }
+  .insight1-stat--muted .evidence-label{ color:var(--ink-soft); }
   .insight1-stat.big{ grid-column:2; grid-row:1; }
   .insight1-stats .insight1-stat:nth-child(2){ grid-column:1; grid-row:2; }
   .insight1-stats .insight1-stat:nth-child(3){ grid-column:2; grid-row:2; }
@@ -676,7 +766,8 @@
     gap:16px;
   }
   @media (max-width:900px){ .proposal-three-col{ grid-template-columns:1fr 1fr; } }
-  .proposal-card{ display:flex; flex-direction:column; gap:10px; background:#F9F9F9; border-radius:8px; padding:36px 38px; }
+  .proposal-card{ display:flex; flex-direction:column; gap:10px; background:#F9F9F9; border-radius:8px; padding:36px 38px; transition:box-shadow .2s ease, transform .2s ease; }
+  .proposal-card:hover{ box-shadow:0 8px 24px rgba(0,0,0,.08); transform:translateY(-3px); }
   .proposal-label{
     display:flex;
     align-items:center;
@@ -942,22 +1033,22 @@
   <section class="slide evidence-hero" data-slide>
     <div class="slide-head">
       <div>
-        <h2 class="slide-title">資料研究<span class="en">Data Research</span></h2>
+        <p class="slide-eyebrow slide-eyebrow--on-accent">驗證這不是個案</p>
+        <h2 class="slide-title">資料研究</h2>
       </div>
+      <p class="evidence-hero-tag">全國性公開數據</p>
     </div>
-    <p class="evidence-hero-tag">全國性公開數據</p>
 
     <div class="evidence-hero-body">
       <div class="evidence-hero-group">
-        <p class="evidence-hero-bar">這不是個案</p>
         <div class="evidence-hero-row">
           <div class="evidence-hero-stat">
-            <p class="evidence-hero-num"><span class="num-value" data-count="35.4">0.0</span><span class="pct">%</span></p>
+            <p class="evidence-hero-num"><span class="num-value">35.4</span><span class="pct">%</span></p>
             <p class="evidence-hero-label">年長者多重用藥（5 種以上）</p>
             <p class="evidence-hero-source">pmc.ncbi.nlm.nih</p>
           </div>
           <div class="evidence-hero-stat">
-            <p class="evidence-hero-num"><span class="num-value" data-count="19.6">0.0</span><span class="pct">%</span></p>
+            <p class="evidence-hero-num"><span class="num-value">19.6</span><span class="pct">%</span></p>
             <p class="evidence-hero-label">服藥不遵從</p>
             <p class="evidence-hero-source">pmc.ncbi.nlm.nih</p>
           </div>
@@ -965,15 +1056,14 @@
       </div>
 
       <div class="evidence-hero-group">
-        <p class="evidence-hero-bar">而且常常是「看不懂」造成的</p>
         <div class="evidence-hero-row">
           <div class="evidence-hero-stat">
-            <p class="evidence-hero-num"><span class="num-value" data-count="43.3">0.0</span><span class="pct">%</span></p>
+            <p class="evidence-hero-num"><span class="num-value">43.3</span><span class="pct">%</span></p>
             <p class="evidence-hero-label">看不懂或不清楚藥袋說明</p>
             <p class="evidence-hero-source">daa.ukn.edu</p>
           </div>
           <div class="evidence-hero-stat">
-            <p class="evidence-hero-num"><span class="num-value" data-count="40.0">0.0</span><span class="pct">%</span></p>
+            <p class="evidence-hero-num"><span class="num-value">40.0</span><span class="pct">%</span></p>
             <p class="evidence-hero-label">說不出正在服用的藥物</p>
             <p class="evidence-hero-source">daa.ukn.edu</p>
           </div>
@@ -982,24 +1072,156 @@
     </div>
   </section>
 
+  <!-- ============ INSIGHT 2/5（現場）：辨識拆解 ============ -->
+  <section class="slide" data-slide>
+    <div class="slide-head">
+      <div>
+        <p class="slide-eyebrow">拆解「看不懂」、「說不出」</p>
+        <h2 class="slide-title">重拾掌控感</h2>
+      </div>
+    </div>
+
+    <div class="insight-sections insight-sections--triple">
+      <div class="insight-section">
+        <div class="insight-card">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          </div>
+          <p class="panel-title">洞察一</p>
+          <p class="insight-card-subhead">「看不懂」又怎樣</p>
+          <span class="qa-point-desc">43.3% 的長輩看不懂藥袋說明，如果藥袋還沒被整理過，這會是一個大問題。</span>
+          <span class="qa-point-desc">但是 APP 的主要使用者是有家屬能夠協助分裝藥物並排定吃藥時間的長輩，吃錯藥的風險已經降到最低。</span>
+        </div>
+      </div>
+
+      <div class="insight-section">
+        <div class="insight-card">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <p class="panel-title">洞察二</p>
+          <p class="insight-card-subhead">「說得出」很重要</p>
+          <span class="qa-point-desc">40.0% 的長者說不出正在吃的藥，即使吃的也是對的藥，這個現象依然存在。</span>
+          <span class="qa-point-desc">這會讓長輩對用藥失去掌控感、安心感，進而對用藥排斥，更難維持用藥習慣。</span>
+        </div>
+      </div>
+
+      <div class="insight-section">
+        <div class="insight-card insight-card--decision">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.5 1 1.3 1 2.1V15h6v-.4c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 2z"/></svg>
+          </div>
+          <p class="panel-title">設計決策</p>
+          <div class="insight-card-block">
+            <span class="insight-card-subhead">① 不做辨識藥物功能</span>
+            <span class="qa-point-desc">這個問題可以被家屬協助分裝解決，新增功能只會增加使用步驟和風險。</span>
+          </div>
+          <div class="insight-card-block">
+            <span class="insight-card-subhead">② 先能說出用途就好</span>
+            <span class="qa-point-desc">在吃藥管理中新增用途說明，和顏色標籤，讓家屬用共同語言幫忙紀錄，例如：早上，紅色格子，顧血壓的藥。不再只是時間到就吞一把藥，也不知道治好了什麼毛病，而是說得出現在在吃什麼。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSIGHT 3/5（現場）：情感連結驅動力 ============ -->
+  <section class="slide" data-slide>
+    <div class="slide-head">
+      <div>
+        <p class="slide-eyebrow">遊戲化獎勵機制</p>
+        <h2 class="slide-title">情感連結驅動力</h2>
+      </div>
+    </div>
+
+    <div class="insight-sections insight-sections--triple">
+      <div class="insight-section">
+        <div class="insight-card">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <p class="panel-title">洞察一</p>
+          <p class="insight-card-subhead">本質是一種習慣養成</p>
+          <span class="qa-point-desc">服藥提醒 App 圍繞著如何讓長輩養成定時服藥的習慣，而習慣養成工具離不開遊戲化機制。但是年長者對於遊戲點數或解鎖成就感受度較低，需要找到能養成習慣的驅動力。</span>
+        </div>
+      </div>
+
+      <div class="insight-section">
+        <div class="insight-card">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <p class="panel-title">洞察二</p>
+          <p class="insight-card-subhead">路上觀察</p>
+          <span class="qa-point-desc">不少長輩的手機桌布都是家人或出遊的照片，推測對長輩來說，情感連結與社交獎勵是最強的驅動力。也找到一些研究證實情感連結與情緒支持對長輩心理健康的正向影響。</span>
+        </div>
+      </div>
+
+      <div class="insight-section">
+        <div class="insight-card insight-card--decision">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <p class="panel-title">設計決策</p>
+          <p class="insight-card-subhead">誘惑綑綁</p>
+          <span class="qa-point-desc">把看照片、聽語音和吃藥行為進行誘惑綑綁，家屬端可以上傳家人合照、語音甚至影片，在長輩點擊「吃過藥」的按鈕後，成功畫面顯示出照片與家人鼓勵。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <p class="stat-strip-title">社會支持對憂鬱有顯著負向預測效果</p>
+        <p class="stat-strip-source">TLSA，65+，n = 1,513，p &lt; .05</p>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <p class="stat-strip-title">高情緒支持者，發生憂鬱的風險較低</p>
+        <p class="stat-strip-source">中老年世代追蹤，50+，n = 3,967，OR &lt; 1，p &lt; .05</p>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <p class="stat-strip-title">家人社會支持與老化焦慮負相關</p>
+        <p class="stat-strip-source">台北，65+，n = 707，r &lt; 0，p &lt; .05</p>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </div>
+        <p class="stat-strip-title">社會連結感與幸福感正相關</p>
+        <p class="stat-strip-source">r = 0.64, p &lt; 0.01</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ INSIGHT 1/5（現場）：台語差異化 ============ -->
   <section class="slide insight1-slide" data-slide>
     <div class="slide-head">
       <div>
-        <h2 class="slide-title">中文普遍性</h2>
+        <p class="slide-eyebrow">趨勢下降但...</p>
+        <h2 class="slide-title">台語是主要日常語言</h2>
       </div>
     </div>
 
     <div class="insight1-layout">
       <div class="insight1-text">
-        <div>
+        <div class="insight1-block insight1-block--insight">
           <p class="panel-title">洞察</p>
-          <p class="insight1-desc">我觀察家中長輩幾乎都用台語對話，看得懂中文但不太會說。</p>
-          <p class="insight1-desc">研究資料發現年長者識字率雖高，但看得懂字不代表習慣用中文溝通，這兩者是不同的口徑。這不只是我們家的觀察，是全國性的現象。</p>
+          <p class="insight-card-subhead">懂中文，但不愛講</p>
+          <p class="insight1-desc">我觀察身邊長輩幾乎都用台語對話，看得懂中文但不太會說。</p>
+          <p class="insight1-desc">研究資料發現年長者識字率雖高，但台語還是主要溝通方式，雖然比例在下滑，但目前仍是普遍現象。</p>
         </div>
-        <div>
+        <div class="insight1-block">
           <p class="panel-title">設計決策</p>
-          <p class="insight1-desc">在原本的語音播放功能基礎上，加入台語語音切換功能，讓長輩不用瞇眼看小字，也能聽懂提醒內容。</p>
+          <p class="insight-card-subhead">語音切換功能</p>
+          <p class="insight1-desc">除了原本就規畫的語音播放功能，再加上台語語音切換功能，讓長輩不用瞇眼看小字，也不用聽比較吃力的中文，降低阻力加速養成用藥習慣。</p>
         </div>
       </div>
       <div class="insight1-stats">
@@ -1011,110 +1233,9 @@
           <p class="evidence-stat">28.5<span class="pct">%</span></p>
           <p class="evidence-label">年長者以國語為主要日常語言</p>
         </div>
-        <div class="insight1-stat">
+        <div class="insight1-stat insight1-stat--muted">
           <p class="evidence-stat">96.6<span class="pct">%</span></p>
           <p class="evidence-label">年長者識字率（讀寫能力，非口語使用率）</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ INSIGHT 2/5（現場）：辨識拆解 ============ -->
-  <section class="slide" data-slide>
-    <div class="slide-head">
-      <div>
-        <h2 class="slide-title">辨識不是比對藥品，是拆解「看不懂」背後的兩個不同問題</h2>
-      </div>
-    </div>
-
-    <div class="insight-sections">
-      <div class="insight-section">
-        <p class="panel-title">洞察</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">43.3% 的長者看不懂藥袋說明，但這通常發生在還沒被家人整理過的原始藥袋上——家屬協助分裝藥程之後，這個問題其實已經被既有的「家屬協助建檔」機制解決了。</span>
-          <span class="qa-point-desc">40.0% 的長者說不出正在吃的藥，即使藥盒已經分好，這個問題依然存在。這是「理解與安心感」的問題，不是「拿錯藥」的問題。</span>
-        </div>
-      </div>
-
-      <div class="insight-section">
-        <p class="panel-title">設計決策</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">辨識功能沒有做成「照片比對」——那會讓長者多一個核對步驟，違反「收到提醒→確認吃藥，只能兩步」的硬性驗收標準。改做成一句白話用途說明，直接回應「說不出來」這件事，同時保留「不建立完整用藥資料庫」的原始判斷。</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ INSIGHT 3/5（現場）：遊戲化→家人合照 ============ -->
-  <section class="slide" data-slide>
-    <div class="slide-head">
-      <div>
-        <h2 class="slide-title">遊戲化獎勵機制</h2>
-      </div>
-    </div>
-
-    <div class="insight-sections">
-      <div class="insight-section">
-        <p class="panel-title">洞察</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">提到養成習慣，很直覺的想到遊戲化機制，但一般習慣養成 App 的成就、獎勵，仔細想想對長輩應該沒什麼吸引力。平時觀察不少長輩的手機桌布都是家人的合照，這些照片對獨居的長輩是很重要的情感寄託，所以會想要隨時可以看到。</span>
-        </div>
-      </div>
-
-      <div class="insight-section">
-        <p class="panel-title">設計決策</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">因此把「看合照」和「吃藥」兩個行為進行誘惑綁定：點擊「吃過藥」的按鈕跳出的成功頁可以上傳照片，可以是家人的合照，或喜歡的風景、生活紀錄。</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ INSIGHT 4/5（備用）：家屬只跳異常 ============ -->
-  <section class="slide" data-slide>
-    <div class="slide-head">
-      <div>
-        <h2 class="slide-title">家屬端只跳異常狀況，不需要時時監控</h2>
-      </div>
-    </div>
-
-    <div class="insight-sections">
-      <div class="insight-section">
-        <p class="panel-title">洞察</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">通常沒有同住的家人自己的生活都非常忙碌，一天可能很難得會聯絡一次。如果 App 隨時回報長輩的狀況，會非常干擾生活節奏，結局就是關閉通知，反而增加風險。</span>
-        </div>
-      </div>
-
-      <div class="insight-section">
-        <p class="panel-title">設計決策</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">因此產品設計成只有異常狀況才跳出提醒，如果異常狀況頻繁發生，就應該要由人工介入，而不是加大通知頻率。</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ INSIGHT 5/5（備用）：沒有行事曆 ============ -->
-  <section class="slide" data-slide>
-    <div class="slide-head">
-      <div>
-        <h2 class="slide-title">沒有行事曆，只提醒最近一次的活動</h2>
-      </div>
-    </div>
-
-    <div class="insight-sections">
-      <div class="insight-section">
-        <p class="panel-title">洞察</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">觀察是長輩的生活節奏緩慢，要記的事情不多，只要沒有失智問題的長輩通常記憶力都非常好。加上操作行事曆的難度比較高，對長輩來說是額外的學習負擔。</span>
-        </div>
-      </div>
-
-      <div class="insight-section">
-        <p class="panel-title">設計決策</p>
-        <div class="card insight-body">
-          <span class="qa-point-desc">所以 App 只留下提醒下一件事的功能作為雙重保險，不做完整行事曆。</span>
         </div>
       </div>
     </div>
@@ -1496,23 +1617,6 @@
 
     function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
-    function animateCounters(root){
-      var els = root.querySelectorAll('.num-value');
-      els.forEach(function(el){
-        var target = parseFloat(el.getAttribute('data-count'));
-        var start = null;
-        var duration = 600;
-        function tick(now){
-          if(start === null) start = now;
-          var t = Math.min(1, (now - start) / duration);
-          var eased = t === 1 ? 1 : 1 - Math.pow(2, -6 * t);
-          el.textContent = (target * eased).toFixed(1);
-          if(t < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      });
-    }
-
     function playDropIn(root){
       var cards = root.querySelectorAll('.insight1-stat');
       cards.forEach(function(el){ el.classList.remove('drop'); });
@@ -1528,7 +1632,6 @@
       nextBtn.disabled = idx === slides.length - 1;
       var isEvidence = slides[idx].classList.contains('evidence-hero');
       document.body.classList.toggle('nav-on-dark', isEvidence);
-      if(isEvidence){ animateCounters(slides[idx]); }
       if(slides[idx].classList.contains('insight1-slide')){ playDropIn(slides[idx]); }
     }
 
