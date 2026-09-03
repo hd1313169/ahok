@@ -591,38 +591,76 @@
     align-items:stretch;
   }
   .insight-sections--triple .insight-section{ gap:0; height:100%; }
+  .insight-sections--dual{ grid-template-columns:repeat(2,1fr); }
+  .audience-grid{ display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(2,auto); gap:20px; align-items:stretch; flex:1; }
+  .audience-col{ display:contents; }
+  .audience-grid .insight-card{ height:100%; }
+  .audience-1{ grid-column:1; grid-row:1; }
+  .audience-2{ grid-column:1; grid-row:2; }
+  .painpoint-1{ grid-column:2; grid-row:1; }
+  .painpoint-2{ grid-column:2; grid-row:2; }
+  @media (max-width:900px){ .audience-grid{ grid-template-columns:1fr; } .audience-1,.audience-2,.painpoint-1,.painpoint-2{ grid-column:auto; grid-row:auto; } }
+  .audience-grid .painpoint-1,
+  .audience-grid .painpoint-2{ display:none; }
+  #ap-chk1:checked ~ .audience-grid .painpoint-1{ display:flex; animation:cardReveal .4s ease both; }
+  #ap-chk2:checked ~ .audience-grid .painpoint-2{ display:flex; animation:cardReveal .4s ease both; }
+  label.audience-card{ cursor:pointer; }
+  .insight-sections--progressive .insight-section--step2,
+  .insight-sections--progressive .insight-section--step3{ display:none; }
+  #qa-chk1:checked ~ .insight-sections--progressive .insight-section--step2,
+  #fc-chk1:checked ~ .insight-sections--progressive .insight-section--step2{ display:flex; animation:cardReveal .4s ease both; }
+  #qa-chk2:checked ~ .insight-sections--progressive .insight-section--step3,
+  #fc-chk2:checked ~ .insight-sections--progressive .insight-section--step3{ display:flex; animation:cardReveal .4s ease both; }
+  .insight-sections--progressive label.insight-card{ cursor:pointer; }
+  @keyframes cardReveal{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
   .insight-card{
-    background:#F9F9F9;
+    background:#F5F5F5;
     border-radius:12px;
     box-shadow:var(--shadow);
     padding:38px 34px;
+    border:1px solid transparent;
     display:flex;
     flex-direction:column;
     gap:12px;
     height:100%;
-    transition:box-shadow .2s ease, transform .2s ease;
+    transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
   }
   .insight-card:hover{ box-shadow:0 8px 24px rgba(0,0,0,.08); transform:translateY(-3px); }
+  .insight-card:not(.insight-card--decision):hover{ border-color:#E2E2E2; }
   .stat-strip{
-    display:grid;
+    display:none;
     grid-template-columns:repeat(4,1fr);
     gap:20px;
   }
+  .insight-sections:has(.js-obs-card-1:hover) ~ .stat-strip-1{ display:grid; }
+  .insight-sections:has(.js-obs-card-2:hover) ~ .stat-strip-2{ display:grid; }
+  .js-obs-card-1, .js-obs-card-2{ cursor:pointer; }
+  .stat-strip--triple{ grid-template-columns:repeat(3,1fr); }
   .stat-strip-item{
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
-    text-align:center;
-    padding:8px;
+    text-align:left;
+    background:#fbfbfb;
+    padding:8px 20px;
+    border-radius:100px;
+    gap:16px;
   }
-  .stat-strip-icon{ width:36px; height:36px; color:var(--accent); margin-bottom:8px; }
+  .stat-strip-icon{ width:20px; height:20px; color:#9A9A9A; flex:none; }
   .stat-strip-icon svg{ width:100%; height:100%; }
+  .stat-strip-text{
+    display:flex;
+    flex-direction:column;
+  }
   .stat-strip-title{
     font-size:16px;
-    font-weight:700;
+    font-weight:400;
     color:var(--ink);
     line-height:1.5;
-    margin:0 0 4px;
+    margin:0 0 2px;
   }
   .stat-strip-source{
     font-size:13px;
@@ -644,6 +682,11 @@
   .insight-card .qa-point-desc{ font-size:19px; line-height:1.7; }
   .insight-card-block{ display:flex; flex-direction:column; gap:4px; }
   .insight-card-block + .insight-card-block{ margin-top:4px; }
+  .audience-card .insight-card-block + .insight-card-block{ margin-top:20px; }
+  .audience-card .insight-card-subhead{ margin-bottom:8px; }
+  .audience-card .insight-card-block{ gap:2px; }
+  .audience-card .qa-point-desc{ font-size:17px; line-height:1.4; }
+  .audience-card .qa-point-desc + .qa-point-desc{ margin-top:-4px; }
   .insight-card-label{
     font-size:13px;
     font-weight:700;
@@ -662,6 +705,7 @@
   .insight-card--decision .insight-card-label{ color:rgba(255,255,255,.85); }
   .insight-card--decision .insight-card-subhead{ color:#fff; }
   .insight-card--decision .insight-card-icon{ background:rgba(255,255,255,.22); color:#fff; }
+  .insight-card--lg{ padding-top:50px; padding-bottom:50px; }
   .slide-eyebrow{
     font-size:clamp(14px,1.2vw,16px);
     font-weight:700;
@@ -742,6 +786,55 @@
     .insight1-stat, .insight1-stat.big{ grid-column:auto; grid-row:auto; }
   }
 
+  /* ---- REFERENCES ---- */
+  .references-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .references-list li{
+    display:flex;
+    gap:18px;
+    align-items:baseline;
+    padding:16px 0;
+    border-bottom:1px solid #DCD5C8;
+  }
+  .references-list li:first-child{ padding-top:0; }
+  .references-list li:last-child{ border-bottom:none; }
+  .references-num{
+    font-family:var(--font-en);
+    font-weight:700;
+    font-size:15px;
+    color:var(--accent);
+    flex:none;
+    width:1.6em;
+  }
+  .references-body{ min-width:0; }
+  .references-title{
+    font-size:17px;
+    font-weight:600;
+    line-height:1.5;
+    color:var(--ink);
+    margin:0 0 4px;
+  }
+  .references-link{
+    font-family:var(--font-en);
+    font-size:14px;
+    color:var(--ink-soft);
+    word-break:break-all;
+    text-decoration:none;
+  }
+  .references-link:hover{ color:var(--accent); text-decoration:underline; }
+  .references-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:56px;
+  }
+  @media (max-width:820px){ .references-grid{ grid-template-columns:1fr; } }
+
   /* ===================== PROPOSAL ===================== */
   .proposal-sheet{
     background:var(--card);
@@ -766,8 +859,9 @@
     gap:16px;
   }
   @media (max-width:900px){ .proposal-three-col{ grid-template-columns:1fr 1fr; } }
-  .proposal-card{ display:flex; flex-direction:column; gap:10px; background:#F9F9F9; border-radius:8px; padding:36px 38px; transition:box-shadow .2s ease, transform .2s ease; }
+  .proposal-card{ display:flex; flex-direction:column; gap:10px; background:#F5F5F5; border-radius:8px; padding:36px 38px; border:1px solid transparent; transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
   .proposal-card:hover{ box-shadow:0 8px 24px rgba(0,0,0,.08); transform:translateY(-3px); }
+  .proposal-card:not(.core):hover{ border-color:#E2E2E2; }
   .proposal-label{
     display:flex;
     align-items:center;
@@ -987,6 +1081,63 @@
       並反推出這款服藥提醒 App 該達成的設計目標。</p>
   </section>
 
+  <!-- ============ AUDIENCE & PAIN POINT ============ -->
+  <section class="slide" data-slide>
+    <div class="slide-head">
+      <div>
+        <p class="slide-eyebrow">有家屬牽掛，卻無法隨時陪伴</p>
+        <h2 class="slide-title">目標受眾與核心痛點</h2>
+      </div>
+    </div>
+
+    <input type="checkbox" id="ap-chk1" class="js-step-toggle" hidden>
+    <input type="checkbox" id="ap-chk2" class="js-step-toggle" hidden>
+
+    <div class="audience-grid">
+      <div class="audience-col">
+        <label for="ap-chk1" class="insight-card audience-card audience-1">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="panel-title">目標受眾一</p>
+          <p class="insight-card-subhead">有家人協助的獨居長輩</p>
+          <span class="qa-point-desc">平日能夠獨立生活、有慢性病要按時服藥的長輩</span>
+          <span class="qa-point-desc">家人會協助處理生活大小事，但日常吃藥還是得自己來</span>
+          <span class="qa-point-desc">會用智慧型手機，但不太會操作複雜的 App 功能</span>
+        </label>
+        <label for="ap-chk2" class="insight-card audience-card audience-2">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p class="panel-title">目標受眾二</p>
+          <p class="insight-card-subhead">生活忙碌偶爾抽空關心的家屬</p>
+          <span class="qa-point-desc">平日忙於工作，沒辦法隨時盯著長輩的青壯年</span>
+          <span class="qa-point-desc">只能靠假日返家或偶爾打電話關心，沒有心力天天追問</span>
+          <span class="qa-point-desc">可以靠 App 掌握長輩的用藥狀況，但不想增加額外管理的負擔</span>
+        </label>
+      </div>
+
+      <div class="audience-col">
+        <div class="insight-card insight-card--decision audience-card painpoint-1">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+          </div>
+          <p class="panel-title">核心痛點一</p>
+          <p class="insight-card-subhead">記不清、看不懂</p>
+          <span class="qa-point-desc">每天要吃好幾種藥，容易想不起來吃了沒，也說不清楚自己在吃什麼，對用藥沒有掌控感</span>
+        </div>
+        <div class="insight-card insight-card--decision audience-card painpoint-2">
+          <div class="insight-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          </div>
+          <p class="panel-title">核心痛點二</p>
+          <p class="insight-card-subhead">蠟燭兩頭燒</p>
+          <span class="qa-point-desc">有自己的生活要顧，不了解長輩平常的日常細節，也不想讓過度關心變成雙方的壓力。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ PROPOSAL ============ -->
   <section class="slide" data-slide>
     <div class="slide-head">
@@ -1081,21 +1232,24 @@
       </div>
     </div>
 
-    <div class="insight-sections insight-sections--triple">
-      <div class="insight-section">
-        <div class="insight-card">
+    <input type="checkbox" id="qa-chk1" class="js-step-toggle" hidden>
+    <input type="checkbox" id="qa-chk2" class="js-step-toggle" hidden>
+
+    <div class="insight-sections insight-sections--triple insight-sections--progressive">
+      <div class="insight-section insight-section--step1">
+        <label for="qa-chk1" class="insight-card">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
           </div>
           <p class="panel-title">洞察一</p>
-          <p class="insight-card-subhead">「看不懂」又怎樣</p>
+          <p class="insight-card-subhead">「看不懂」沒關係</p>
           <span class="qa-point-desc">43.3% 的長輩看不懂藥袋說明，如果藥袋還沒被整理過，這會是一個大問題。</span>
-          <span class="qa-point-desc">但是 APP 的主要使用者是有家屬能夠協助分裝藥物並排定吃藥時間的長輩，吃錯藥的風險已經降到最低。</span>
-        </div>
+          <span class="qa-point-desc">但是這個問題可以被家屬協助分裝解決，吃錯藥的風險已經降到最低。</span>
+        </label>
       </div>
 
-      <div class="insight-section">
-        <div class="insight-card">
+      <div class="insight-section insight-section--step2">
+        <label for="qa-chk2" class="insight-card">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </div>
@@ -1103,18 +1257,18 @@
           <p class="insight-card-subhead">「說得出」很重要</p>
           <span class="qa-point-desc">40.0% 的長者說不出正在吃的藥，即使吃的也是對的藥，這個現象依然存在。</span>
           <span class="qa-point-desc">這會讓長輩對用藥失去掌控感、安心感，進而對用藥排斥，更難維持用藥習慣。</span>
-        </div>
+        </label>
       </div>
 
-      <div class="insight-section">
-        <div class="insight-card insight-card--decision">
+      <div class="insight-section insight-section--step3">
+        <div class="insight-card insight-card--decision insight-card--lg">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.5 1 1.3 1 2.1V15h6v-.4c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 2z"/></svg>
           </div>
           <p class="panel-title">設計決策</p>
           <div class="insight-card-block">
             <span class="insight-card-subhead">① 不做辨識藥物功能</span>
-            <span class="qa-point-desc">這個問題可以被家屬協助分裝解決，新增功能只會增加使用步驟和風險。</span>
+            <span class="qa-point-desc">家屬協助分裝藥物和排定吃藥時間就可以有效吃錯藥的風險，基於簡單好上手的核心原則，現階段沒理由新增這麼複雜的功能。</span>
           </div>
           <div class="insight-card-block">
             <span class="insight-card-subhead">② 先能說出用途就好</span>
@@ -1134,31 +1288,34 @@
       </div>
     </div>
 
-    <div class="insight-sections insight-sections--triple">
-      <div class="insight-section">
-        <div class="insight-card">
+    <input type="checkbox" id="fc-chk1" class="js-step-toggle" hidden>
+    <input type="checkbox" id="fc-chk2" class="js-step-toggle" hidden>
+
+    <div class="insight-sections insight-sections--triple insight-sections--progressive">
+      <div class="insight-section insight-section--step1">
+        <label for="fc-chk1" class="insight-card js-obs-card-1">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
           </div>
           <p class="panel-title">洞察一</p>
-          <p class="insight-card-subhead">本質是一種習慣養成</p>
+          <p class="insight-card-subhead">養成習慣→遊戲化</p>
           <span class="qa-point-desc">服藥提醒 App 圍繞著如何讓長輩養成定時服藥的習慣，而習慣養成工具離不開遊戲化機制。但是年長者對於遊戲點數或解鎖成就感受度較低，需要找到能養成習慣的驅動力。</span>
-        </div>
+        </label>
       </div>
 
-      <div class="insight-section">
-        <div class="insight-card">
+      <div class="insight-section insight-section--step2">
+        <label for="fc-chk2" class="insight-card js-obs-card-2">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
           <p class="panel-title">洞察二</p>
-          <p class="insight-card-subhead">路上觀察</p>
+          <p class="insight-card-subhead">情感連結是最強的驅動力</p>
           <span class="qa-point-desc">不少長輩的手機桌布都是家人或出遊的照片，推測對長輩來說，情感連結與社交獎勵是最強的驅動力。也找到一些研究證實情感連結與情緒支持對長輩心理健康的正向影響。</span>
-        </div>
+        </label>
       </div>
 
-      <div class="insight-section">
-        <div class="insight-card insight-card--decision">
+      <div class="insight-section insight-section--step3">
+        <div class="insight-card insight-card--decision insight-card--lg">
           <div class="insight-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </div>
@@ -1169,34 +1326,72 @@
       </div>
     </div>
 
-    <div class="stat-strip">
+    <div class="stat-strip stat-strip--triple stat-strip-1">
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/></svg>
+        </div>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">遊戲化與年長者的使用體驗顯著正相關</p>
+          <p class="stat-strip-source">舒適感（β = 0.440）社會性（β = 0.946）</p>
+        </div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v5M12 13l-5 3M12 13l5 3"/></svg>
+        </div>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">短暫遊戲化社交互動即可提升情感連結</p>
+          <p class="stat-strip-source">歸屬感：4.49 vs. 3.90（1–7 分，p &lt; 0.05）</p>
+        </div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">數位健康生態系使用者自評身心健康皆顯著改善</p>
+          <p class="stat-strip-source">身體健康、情緒、社交、心理福祉 （p &lt; 0.05）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-strip stat-strip-2 js-stat-strip">
       <div class="stat-strip-item">
         <div class="stat-strip-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
-        <p class="stat-strip-title">社會支持對憂鬱有顯著負向預測效果</p>
-        <p class="stat-strip-source">TLSA，65+，n = 1,513，p &lt; .05</p>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">社會支持對憂鬱有顯著負向預測效果</p>
+          <p class="stat-strip-source">TLSA，65+，n = 1,513，p &lt; .05</p>
+        </div>
       </div>
       <div class="stat-strip-item">
         <div class="stat-strip-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
-        <p class="stat-strip-title">高情緒支持者，發生憂鬱的風險較低</p>
-        <p class="stat-strip-source">中老年世代追蹤，50+，n = 3,967，OR &lt; 1，p &lt; .05</p>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">高情緒支持者，發生憂鬱的風險較低</p>
+          <p class="stat-strip-source" style="font-size:11px">中老年世代追蹤，50+，n = 3,967，OR &lt; 1，p &lt; .05</p>
+        </div>
       </div>
       <div class="stat-strip-item">
         <div class="stat-strip-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-        <p class="stat-strip-title">家人社會支持與老化焦慮負相關</p>
-        <p class="stat-strip-source">台北，65+，n = 707，r &lt; 0，p &lt; .05</p>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">家人社會支持與老化焦慮負相關</p>
+          <p class="stat-strip-source">台北，65+，n = 707，r &lt; 0，p &lt; .05</p>
+        </div>
       </div>
       <div class="stat-strip-item">
         <div class="stat-strip-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
         </div>
-        <p class="stat-strip-title">社會連結感與幸福感正相關</p>
-        <p class="stat-strip-source">r = 0.64, p &lt; 0.01</p>
+        <div class="stat-strip-text">
+          <p class="stat-strip-title">社會連結感與幸福感正相關</p>
+          <p class="stat-strip-source">r = 0.64, p &lt; 0.01</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1238,6 +1433,79 @@
           <p class="evidence-label">年長者識字率（讀寫能力，非口語使用率）</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 參考資料 ============ -->
+  <section class="slide references-slide" data-slide>
+    <div class="slide-head">
+      <div>
+        <p class="slide-eyebrow">Sources</p>
+        <h2 class="slide-title">參考資料</h2>
+      </div>
+    </div>
+
+    <div class="references-grid">
+      <ul class="references-list">
+        <li>
+          <span class="references-num">01</span>
+          <div class="references-body">
+            <p class="references-title">Connecting screens: the effect of online playful interactions on social, emotional, and cognitive functioning among older adults</p>
+            <a class="references-link" href="https://www.nature.com/articles/s41599-025-05935-0" target="_blank" rel="noopener">nature.com/articles/s41599-025-05935-0</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">02</span>
+          <div class="references-body">
+            <p class="references-title">The Relationships between Different Forms of Gamification and User Experience: A Study in the Context of Elderly Well-being Applications</p>
+            <a class="references-link" href="https://trepo.tuni.fi/bitstream/handle/10024/209248/0333.pdf?sequence=1" target="_blank" rel="noopener">trepo.tuni.fi/bitstream/handle/10024/209248/0333.pdf</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">03</span>
+          <div class="references-body">
+            <p class="references-title">Implementing an inclusive digital health ecosystem for healthy aging: a case study on project SingaporeWALK</p>
+            <a class="references-link" href="https://academic.oup.com/jamiaopen/article/8/1/ooae148/7935505" target="_blank" rel="noopener">academic.oup.com/jamiaopen/article/8/1/ooae148</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">04</span>
+          <div class="references-body">
+            <p class="references-title">Association of intrinsic capacity and medication non-adherence among older adults with non-communicable diseases in Taiwan</p>
+            <a class="references-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12878619/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC12878619</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="references-list">
+        <li>
+          <span class="references-num">05</span>
+          <div class="references-body">
+            <p class="references-title">Longitudinal data of multimorbidity and polypharmacy in older adults in Taiwan from 2000 to 2013</p>
+            <a class="references-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7608846/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC7608846</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">06</span>
+          <div class="references-body">
+            <p class="references-title">社區老年人用藥安全之檢測與評估</p>
+            <a class="references-link" href="https://daa.ukn.edu.tw/var/file/21/1021/img/1340/122316143.pdf" target="_blank" rel="noopener">daa.ukn.edu.tw/var/file/21/1021/img/1340/122316143.pdf</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">07</span>
+          <div class="references-body">
+            <p class="references-title">內政統計通報 113年第18週</p>
+            <a class="references-link" href="https://ws.moi.gov.tw/Download.ashx?u=LzAwMS9VcGxvYWQvNDAwL3JlbGZpbGUvOTAwOS8zMTU0MDQvMTMxYTYyZjUtMDczZS00NGM0LWIzMmQtYzM2MTYxODk4OGE4LnBkZg==&amp;n=MTEz5bm056ysMTjpgLHlhafmlL/ntbHoqIjpgJrloLFf5pWZ6IKy56iL5bqmLnBkZg==" target="_blank" rel="noopener">ws.moi.gov.tw（內政部統計處下載連結）</a>
+          </div>
+        </li>
+        <li>
+          <span class="references-num">08</span>
+          <div class="references-body">
+            <p class="references-title">我國本土語言使用人口呈現世代遞減之現象，政府刻正推動沉浸式教學，允宜借鏡國外成功案例，賡續積極推動，以利本土語言往下札根永續傳承</p>
+            <a class="references-link" href="https://www.ly.gov.tw/Pages/Detail.aspx?nodeid=46405&amp;pid=231979" target="_blank" rel="noopener">ly.gov.tw/Pages/Detail.aspx?nodeid=46405&amp;pid=231979</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
