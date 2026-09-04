@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
 <meta charset="UTF-8">
 <title>Briefing | Ahok - 年長者的生活管家</title>
 <link rel="icon" type="image/png" href="img/favicon.png?v=2">
@@ -605,10 +607,7 @@
   #ap-chk1:checked ~ .audience-grid .painpoint-1{ display:flex; animation:cardReveal .4s ease both; }
   #ap-chk2:checked ~ .audience-grid .painpoint-2{ display:flex; animation:cardReveal .4s ease both; }
   label.audience-card{ cursor:pointer; }
-  .insight-sections--progressive .insight-section--step2,
   .insight-sections--progressive .insight-section--step3{ display:none; }
-  #qa-chk1:checked ~ .insight-sections--progressive .insight-section--step2,
-  #fc-chk1:checked ~ .insight-sections--progressive .insight-section--step2{ display:flex; animation:cardReveal .4s ease both; }
   #qa-chk2:checked ~ .insight-sections--progressive .insight-section--step3,
   #fc-chk2:checked ~ .insight-sections--progressive .insight-section--step3{ display:flex; animation:cardReveal .4s ease both; }
   .insight-sections--progressive label.insight-card{ cursor:pointer; }
@@ -681,7 +680,7 @@
   .insight-card .panel-title{ color:var(--accent); margin:0; }
   .insight-card .qa-point-desc{ font-size:19px; line-height:1.7; }
   .insight-card-block{ display:flex; flex-direction:column; gap:4px; }
-  .insight-card-block + .insight-card-block{ margin-top:4px; }
+  .insight-card-block + .insight-card-block{ margin-top:20px; }
   .audience-card .insight-card-block + .insight-card-block{ margin-top:20px; }
   .audience-card .insight-card-subhead{ margin-bottom:8px; }
   .audience-card .insight-card-block{ gap:2px; }
@@ -714,6 +713,24 @@
     letter-spacing:.02em;
   }
   .slide-eyebrow--on-accent{ color:#fff; }
+  .assumption-tag{
+    display:inline-flex;
+    align-items:baseline;
+    gap:8px;
+    margin-top:24px;
+    margin-bottom:-12px;
+    padding:8px 16px;
+    background:var(--accent-tint);
+    border-radius:6px;
+    font-size:clamp(13px,1.1vw,15px);
+    line-height:1.5;
+  }
+  .assumption-tag .assumption-label{
+    font-weight:700;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .assumption-tag .assumption-body{ color:#6B6B6B; }
   @media (max-width:900px){ .insight-sections--triple{ grid-template-columns:1fr; } }
   .evidence-grid--cols-3{ grid-template-columns:repeat(3,1fr); }
   .evidence-grid--cols-3 .evidence-stat{ font-size:clamp(32px,4.5vw,52px); }
@@ -1002,31 +1019,6 @@
   }
 
   /* ---------- nav ---------- */
-  .navdots{
-    position:fixed;
-    right:18px;
-    top:50%;
-    transform:translateY(-50%);
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    z-index:20;
-  }
-  .navdots button{
-    width:9px;height:9px;
-    border-radius:50%;
-    border:1.5px solid var(--primary);
-    background:transparent;
-    padding:0;
-    cursor:pointer;
-    transition:background .15s,border-color .15s,transform .15s;
-  }
-  .navdots button.active{
-    background:var(--accent);
-    border-color:var(--accent);
-    transform:scale(1.25);
-  }
-  .navdots button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   .counter{
     position:fixed;
     left:18px;
@@ -1039,8 +1031,9 @@
   }
   .navarrows{
     position:fixed;
-    right:14px;
-    bottom:16px;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
     display:flex;
     flex-direction:column;
     gap:8px;
@@ -1061,23 +1054,22 @@
   .navarrows button:hover{ background:var(--primary); color:#fff; }
   .navarrows button:disabled{ opacity:.35; cursor:default; }
   .navarrows button:disabled:hover{ background:var(--card); color:var(--primary); }
-  @media (max-width:600px){ .navdots{ display:none; } }
 
   /* ---- nav color inversion over dark/colored slides ---- */
-  body.nav-on-dark .navdots button{ border-color:#fff; }
-  body.nav-on-dark .navdots button.active{ background:#fff; border-color:#fff; }
   body.nav-on-dark .counter{ color:rgba(255,255,255,.85); }
   body.nav-on-dark .navarrows button{ border-color:#fff; background:rgba(255,255,255,.15); color:#fff; }
   body.nav-on-dark .navarrows button:hover{ background:#fff; color:var(--accent); }
   body.nav-on-dark .navarrows button:disabled:hover{ background:rgba(255,255,255,.15); color:#fff; }
 </style>
+</head>
+<body>
 
 <div class="deck" id="deck">
 
   <!-- ============ COVER ============ -->
   <section class="slide cover" data-slide>
-    <h1>記得清、看得懂、按得到<br><em>年長者的生活管家 App</em></h1>
-    <p class="sub">從一位獨居長輩「陳奶奶」與她兒子的日常出發，拆解真實困擾，
+    <h1>記得清、看得懂、按得到<br><em>協助年長者建立服藥習慣的好幫手</em></h1>
+    <p class="sub">從一位獨居長輩與她兒子的日常出發，拆解真實困擾，
       並反推出這款服藥提醒 App 該達成的設計目標。</p>
   </section>
 
@@ -1132,7 +1124,7 @@
           </div>
           <p class="panel-title">核心痛點二</p>
           <p class="insight-card-subhead">蠟燭兩頭燒</p>
-          <span class="qa-point-desc">有自己的生活要顧，不了解長輩平常的日常細節，也不想讓過度關心變成雙方的壓力。</span>
+          <span class="qa-point-desc">有自己的生活要顧，不了解長輩的日常細節，也不想讓過度關心變成雙方的壓力。</span>
         </div>
       </div>
     </div>
@@ -1150,31 +1142,31 @@
       <div class="proposal-two-col">
         <div class="proposal-card">
           <span class="proposal-label"><span class="num">1</span>問題描述</span>
-          <span class="proposal-body">陳奶奶每天要吃 5 種藥，常想不起來吃了沒，也說不清楚自己在吃什麼。兒子只有假日回家，平日沒辦法隨時確認。</span>
+          <span class="proposal-body">每天要吃 5 種藥，常想不起來吃了沒，也說不清楚自己在吃什麼。<br>兒子只有假日回家，平日沒辦法隨時確認。</span>
         </div>
         <div class="proposal-card">
           <span class="proposal-label"><span class="num">2</span>非目標</span>
-          <span class="proposal-body">不做紀錄用藥、不監測健康狀況，只做提醒與連絡。</span>
+          <span class="proposal-body">不涉及醫療相關用途，包含藥物辨識、用藥紀錄與健康監測。</span>
         </div>
       </div>
 
       <div class="proposal-card core">
         <span class="proposal-label"><span class="num">3</span>核心假說</span>
-        <span class="proposal-body">如果長輩每次服藥時，都能看懂「這是做什麼用的」，並用一個按鈕確認吃過了，就能安心維持吃藥習慣，家屬也不用天天追問。</span>
+        <span class="proposal-body">如果長輩每次服藥時都知道自己在吃什麼，點擊按鈕就可以確認吃過了，協助他們重拾對用藥的掌控感，就有動力維持習慣，家屬也不用天天追問。</span>
       </div>
 
       <div class="proposal-three-col">
         <div class="proposal-card">
           <span class="proposal-label"><span class="num">4</span>關鍵流程</span>
-          <span class="proposal-body">打開 App → 下一次吃藥時間 → 按「我吃過藥了」→ 跳出吃過藥的鼓勵 → 家屬每日看一次總結。</span>
+          <span class="proposal-body">打開 App → 下一次吃藥時間（附用途說明與標籤）→ 按「我吃過藥了」→ 跳出成功獎勵 → 家屬每日看一次總結。</span>
         </div>
         <div class="proposal-card">
           <span class="proposal-label"><span class="num">5</span>成功指標</span>
-          <span class="proposal-body">主要：長輩準時吃藥，看得懂在吃什麼。<br>次要：家屬需要關注的異常狀況次數下降。</span>
+          <span class="proposal-body">主要：長輩準時吃藥，說得出自己在吃什麼。<br>次要：家屬需要關注的異常狀況次數下降。</span>
         </div>
         <div class="proposal-card">
           <span class="proposal-label"><span class="num">6</span>權衡</span>
-          <span class="proposal-body">一個畫面只做一件事，避免操作上的失誤造成體驗中斷，這一版管理功能都全部收進家屬端的管理設定。</span>
+          <span class="proposal-body">集中在「掌控感」與「情感連結」，一個畫面只做一件事，管理功能收進家屬端，避免操作失誤打斷體驗。</span>
         </div>
       </div>
     </div>
@@ -1229,6 +1221,7 @@
       <div>
         <p class="slide-eyebrow">拆解「看不懂」、「說不出」</p>
         <h2 class="slide-title">重拾掌控感</h2>
+        <p class="assumption-tag"><span class="assumption-label">原本假設：</span><span class="assumption-body">長輩看不懂藥怕吃錯，應該做藥物辨識和藥品檔案建立功能</span></p>
       </div>
     </div>
 
@@ -1285,6 +1278,7 @@
       <div>
         <p class="slide-eyebrow">遊戲化獎勵機制</p>
         <h2 class="slide-title">情感連結驅動力</h2>
+        <p class="assumption-tag"><span class="assumption-label">原本假設：</span><span class="assumption-body">需要掌控用藥時間和次數，應該著重在完善提醒和監控功能</span></p>
       </div>
     </div>
 
@@ -1402,6 +1396,7 @@
       <div>
         <p class="slide-eyebrow">趨勢下降但...</p>
         <h2 class="slide-title">台語是主要日常語言</h2>
+        <p class="assumption-tag"><span class="assumption-label">原本假設：</span><span class="assumption-body">長輩專用的 App 一定要有語音播放和輸入功能，方向是對的...</span></p>
       </div>
     </div>
 
@@ -1725,18 +1720,18 @@
       <div class="bar">色彩系統</div>
       <div class="guide-swatches">
         <div class="swatch">
-          <div class="swatch-color" style="background:#1A4B3E;"></div>
+          <div class="swatch-color" style="background:#0F4C42;"></div>
           <div class="swatch-body">
-            <span class="swatch-name">深松針綠</span>
-            <span class="swatch-hex">#1A4B3E</span>
+            <span class="swatch-name">深青綠</span>
+            <span class="swatch-hex">#0F4C42</span>
             <span class="swatch-usage">主色．標題／導覽列／卡片邊框</span>
           </div>
         </div>
         <div class="swatch oatmeal">
-          <div class="swatch-color" style="background:#F4F0EA;"></div>
+          <div class="swatch-color" style="background:#FBF3E7;"></div>
           <div class="swatch-body">
-            <span class="swatch-name">暖燕麥米</span>
-            <span class="swatch-hex">#F4F0EA</span>
+            <span class="swatch-name">暖米白</span>
+            <span class="swatch-hex">#FBF3E7</span>
             <span class="swatch-usage">輔助色．全域背景，取代刺眼純白</span>
           </div>
         </div>
@@ -1745,7 +1740,15 @@
           <div class="swatch-body">
             <span class="swatch-name">暖陽橙色</span>
             <span class="swatch-hex">#E05A2B</span>
-            <span class="swatch-usage">強調色．主要按鈕／未完成提醒</span>
+            <span class="swatch-usage">強調色 A．主要按鈕／重點色塊，大型文字配深色字、小型徽章改用加深版配白字</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8637A;"></div>
+          <div class="swatch-body">
+            <span class="swatch-name">珊瑚粉</span>
+            <span class="swatch-hex">#E8637A</span>
+            <span class="swatch-usage">強調色 B（新增）．裝飾性「重要／緊急」大卡片，如緊急聯絡</span>
           </div>
         </div>
         <div class="swatch">
@@ -1769,7 +1772,7 @@
           <div class="swatch-body">
             <span class="swatch-name">柿紅</span>
             <span class="swatch-hex">#D33F21</span>
-            <span class="swatch-usage">警告／急件．多次未吃藥、緊急聯絡</span>
+            <span class="swatch-usage">警告／急件（系統判定）．多次未吃藥、緊急聯絡，與珊瑚粉裝飾色分工不同</span>
           </div>
         </div>
       </div>
@@ -1789,9 +1792,10 @@
       <div class="col">
         <div class="bar">✅ 正確做法</div>
         <ul class="do-list">
-          <li><span class="mk">✓</span><span>顏色搭配大字體文字雙重編碼，如「綠色＋已完成」</span></li>
+          <li><span class="mk">✓</span><span>顏色搭配大字體文字與圖示三重編碼，如「綠色＋✓＋已完成」</span></li>
           <li><span class="mk">✓</span><span>按鈕高度 60dp 以上、大面積色塊點擊區</span></li>
           <li><span class="mk">✓</span><span>主要文字用 #121212，輔助文字最淺不低於 #333333</span></li>
+          <li><span class="mk">✓</span><span>強調色文字色先驗證對比度：橘色大型文字配深色字、小型徽章改用加深版配白字，珊瑚粉小字改用加深版＋白字</span></li>
         </ul>
       </div>
       <div class="col">
@@ -1801,6 +1805,7 @@
           <li><span class="mk">✕</span><span>避免藍紫色作為關鍵狀態，易與黑色混淆</span></li>
           <li><span class="mk">✕</span><span>避免大面積純白背景，長時間觀看會刺眼流淚</span></li>
           <li><span class="mk">✕</span><span>禁止僅靠顏色區分狀態，色弱長輩無法分辨</span></li>
+          <li><span class="mk">✕</span><span>珊瑚粉與柿紅角色不可混用：前者是裝飾性重要標示，後者是系統警示色</span></li>
         </ul>
       </div>
     </div>
@@ -1858,7 +1863,6 @@
 
 </div>
 
-<div class="navdots" id="navdots"></div>
 <div class="counter" id="counter">01 / 14</div>
 <div class="navarrows">
   <button id="prevBtn" aria-label="上一頁">↑</button>
@@ -1869,19 +1873,10 @@
   (function(){
     var deck = document.getElementById('deck');
     var slides = Array.prototype.slice.call(document.querySelectorAll('[data-slide]'));
-    var dotsWrap = document.getElementById('navdots');
     var counter = document.getElementById('counter');
     var prevBtn = document.getElementById('prevBtn');
     var nextBtn = document.getElementById('nextBtn');
     var current = 0;
-
-    slides.forEach(function(s, i){
-      var b = document.createElement('button');
-      b.setAttribute('aria-label', 'Slide ' + (i+1));
-      b.addEventListener('click', function(){ s.scrollIntoView({behavior:'smooth'}); });
-      dotsWrap.appendChild(b);
-    });
-    var dots = Array.prototype.slice.call(dotsWrap.children);
 
     function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
@@ -1894,7 +1889,6 @@
 
     function setActive(idx){
       current = idx;
-      dots.forEach(function(d,i){ d.classList.toggle('active', i === idx); });
       counter.textContent = pad(idx+1) + ' / ' + pad(slides.length);
       prevBtn.disabled = idx === 0;
       nextBtn.disabled = idx === slides.length - 1;
@@ -1971,7 +1965,7 @@
 
 <nav class="impeccable-demo-nav" aria-label="Demo 導覽（僅供展示用，非簡報內容本身）">
   <button type="button" class="impeccable-demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
   </button>
   <div class="impeccable-demo-nav__panel">
     <p class="impeccable-demo-nav__title">Demo 導覽</p>
@@ -2009,3 +2003,6 @@
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
   })();
 </script>
+
+</body>
+</html>

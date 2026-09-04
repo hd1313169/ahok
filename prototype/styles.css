@@ -6,32 +6,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
 
 :root {
-  /* 品牌與主色調 */
-  --color-primary: #1A4B3E;        /* 深松針綠 */
-  --color-secondary: #F4F0EA;      /* 暖燕麥米 */
-  --color-accent: #E05A2B;         /* 暖陽橙色 */
+  /* 品牌與主色調（2026 柔化改版：使用者要求全 13 個畫面一起降低彩度、
+     提高明度，對比度下限從 WCAG AAA 放寬到 AA，換取更柔和、不暗沉的視覺感受。
+     見 design guide.md 第四、五節「柔化改版對比度重新驗證」） */
+  --color-primary: #457569;        /* 柔霧綠（原深青綠 #0F4C42 提高明度、降低飽和度） */
+  --color-secondary: #F8F6F2;      /* 近白暖調背景（原暖米白 #FBF3E7 再淡化，接近純白但保留一絲暖調） */
+  --color-accent: #C8703C;         /* 柔陽橙（原暖陽橙 #E05A2B 降低飽和度；比初版柔化再深一階，
+                                       讓白字／白色圖示在此底色上仍有約 3.6:1，通過大型文字與
+                                       非文字元件的 AA 3:1 門檻，因為橘底一律改用白字白圖示） */
+  --color-accent-b: #EA92A5;       /* 柔粉（原珊瑚粉 #E8637A 提高明度），僅供大型粗體標題／圖示徽章使用，
+                                       小字內文一律改用 --color-accent-b-deep + 白字 */
 
   /* 中性色與語意色 */
-  --color-text: #121212;           /* 沉墨黑 */
-  --color-text-secondary: #333333; /* 輔助說明文字下限 */
-  --color-card: #FFFFFF;           /* 高光白 */
-  --color-success: #2D7A5D;        /* 翡翠綠 */
-  --color-danger: #D33F21;         /* 柿紅 */
+  --color-text: #3A3733;           /* 柔暖炭灰（原沉墨黑 #121212 提高明度、降低飽和度，非淺灰，AA 對比仍充足） */
+  --color-text-secondary: #5A554E; /* 輔助說明文字（原 #333333 同步提高明度） */
+  --color-card: #FFFFFF;           /* 卡片底色（僅限卡片範圍，不作大面積背景） */
+  --color-success: #3D8069;        /* 柔翡翠綠（原翡翠綠 #2D7A5D 提高明度） */
+  --color-danger: #D33F21;         /* 柿紅．系統警示文字／圖示專用，維持原色不柔化（緊急語意需保留辨識度） */
 
-  /* 徽章專用深色（既定色調不夠深，無法讓白字達到 AAA，故加深製作實心徽章） */
-  --color-success-deep: #1F5A44;
-  --color-accent-deep: #8F3415; /* 白字對比 7.87:1，清楚通過 AAA */
+  /* 徽章專用深色（供白字小字徽章使用，AA 對比 4.5:1+） */
+  --color-success-deep: #2F6754;   /* 白字對比約 6.6:1 */
+  --color-accent-deep: #B85A2E;    /* 橘色的加深版：白字對比約 4.6:1 */
+  --color-accent-b-deep: #C24D63;  /* 柔粉的加深版：白字對比約 4.6:1 */
 
   /* 辨識色彩配件（家屬選填，呼應實體藥盒既有配色，非狀態語意色，不可與 success/danger 混用） */
-  --color-swatch-earth: #8A6D3F; /* 大地棕，暖色系，既定色彩系統之外的第三個中性選項 */
+  --color-swatch-earth: #A9895C; /* 柔焦糖棕（原大地棕 #8A6D3F 提高明度、降低飽和度） */
 
-  /* 陰影（既定規格未定義，本次擴充：圓潤卡片＋輕微陰影） */
-  --shadow-card: 0 4px 16px rgba(26, 75, 62, 0.10), 0 1px 3px rgba(26, 75, 62, 0.08);
-  --shadow-button: 0 6px 20px rgba(224, 90, 43, 0.28);
-  --shadow-button-success: 0 6px 20px rgba(45, 122, 93, 0.28);
+  /* 「今天的藥」卡片辨識色（黃／藍／紅／綠），僅作卡片／圖示辨識用途，非系統警示色 */
+  --color-yellow: #F5B942;       /* 明確的黃色（同首頁 med-card 圖示黃底 #F5B942），
+                                     非偏棕的土黃色，淺底需搭配深色文字／圖示才符合對比 */
+  --color-blue: #7CA9CF;         /* 明度較高的柔霧藍 */
+  --color-blue-deep: #3E5F7D;    /* 藍色加深版：白字對比達 AA */
+  --color-red: #E28A73;          /* 明度較高的柔磚紅（與 --color-danger 區隔，較低飽和度） */
+  --color-red-deep: #A5503E;     /* 紅色加深版：白字對比達 AA */
+  --color-green: #6FB08C;        /* 明度較高的柔綠（與 --color-primary 區隔，較淺較亮） */
+  --color-green-deep: #3D8069;   /* 綠色加深版：白字對比達 AA */
+  --color-purple: #A585C2;       /* 同色系（明度較高）柔紫，僅供辨識顏色選色器使用 */
+  --color-orange: #E8A659;       /* 同色系（明度較高）柔橘，僅供辨識顏色選色器使用 */
 
-  /* 圓角（既定規格未定義，本次擴充） */
-  --radius-card: 20px;
+  /* 陰影（既定規格未定義，本次擴充：卡片與按鈕統一改為無陰影的純色塊語言） */
+  --shadow-card: none;
+  --shadow-button: none;
+  --shadow-button-success: none;
+  --shadow-button-urgent: none;
+
+  /* 圓角：卡片統一放大到 24px，呼應參考版型的圓潤卡片語彙 */
+  --radius-card: 24px;
+  --radius-badge: 999px;   /* 圖示徽章：2026 再改回正圓形（實心彩色，非空心描邊） */
   --radius-button: 18px;
   --radius-pill: 999px;
 
@@ -160,12 +181,25 @@ html.embedded .phone-frame__screen .screen {
    ============================================================ */
 
 .topbar {
-  background: var(--color-primary);
-  color: #FFFFFF;
-  padding: var(--space-4) var(--space-3) var(--space-3);
+  background: var(--color-secondary);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-4) var(--space-3);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   gap: var(--space-2);
+  border-radius: 0 0 28px 28px;
+  box-sizing: border-box;
+}
+
+/* header 後面緊接著跑馬燈時，圓角要留給整組（header+跑馬燈）的最底部，
+   header 本身底部收直角，跑馬燈才是視覺上的收尾 */
+.topbar:has(+ .ticker) {
+  border-radius: 0;
+}
+.topbar + .ticker {
+  border-radius: 0 0 28px 28px;
 }
 
 .topbar__icon {
@@ -175,14 +209,14 @@ html.embedded .phone-frame__screen .screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(58, 55, 51, 0.08);
   border-radius: var(--radius-pill);
 }
 
 .topbar__icon svg {
   width: 26px;
   height: 26px;
-  stroke: #FFFFFF;
+  stroke: var(--color-text);
 }
 
 /* 可點擊的返回鍵：需符合 60dp 觸控下限，裝飾用圖示（無互動）維持原尺寸 */
@@ -199,7 +233,7 @@ html.embedded .phone-frame__screen .screen {
 }
 
 .topbar__greeting {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -207,25 +241,40 @@ html.embedded .phone-frame__screen .screen {
 .topbar__date {
   font-size: 16px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--color-text-secondary);
 }
 
 .topbar--compact {
-  padding: var(--space-3) var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ============================================================
+   Hero 導覽列：用於首頁／家屬今日總結等「歡迎時刻」畫面。
+   ============================================================ */
+.topbar--hero {
+  flex-direction: row;
+  align-items: center;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-3);
 }
 
 /* 頁面主要內容 */
 
 .content {
   flex: 1;
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3) var(--space-3);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
 .content--balanced {
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+/* 「今天的藥」清單專用：卡片間距縮小，讓三張卡片更緊湊 */
+.content--tight {
+  gap: var(--space-2);
 }
 
 .content--center {
@@ -243,7 +292,6 @@ html.embedded .phone-frame__screen .screen {
 .card {
   position: relative;
   background: var(--color-card);
-  border: 2px solid var(--color-primary);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   padding: var(--space-4);
@@ -253,9 +301,232 @@ html.embedded .phone-frame__screen .screen {
   padding-right: 60px;
 }
 
+/* ============================================================
+   圓形藥物卡片：今日提醒首頁的焦點卡片，直式置中排列
+   （圖示／藥名／用途由上到下），整體版面呼應計時器 App 的
+   置中圓形焦點物件語彙
+   ============================================================ */
+
+.med-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-3);
+  margin-top: -24px;
+  box-sizing: border-box;
+}
+
+/* 圓角矩形（squircle）卡片：取代先前的正圓形，移除外圈橘色光暈，
+   靠現有的 1px 細邊框界定卡片範圍（跟其餘卡片系統一致，維持無陰影規則）。
+   播放按鈕改成完全獨立的絕對定位元素，不再跟圖示／文字共用同一個 flex
+   排版——共用同一組 flex 時，播放按鈕的存在會把圖示／文字這組主要內容的
+   視覺重心往上推，越想把按鈕往下移、越會把上面的內容跟著往上擠壓。
+   拆開之後，.med-card__main（圖示＋文字）可以單純置中在卡片正中央，
+   播放按鈕用 bottom 距離自由調整位置，兩者互不影響 */
+/* 播放中的視覺回饋：wrap 負責畫「背景淺黃色 ring」（跟卡片本體是各自獨立的
+   圖層，疊在卡片後方，做法沿用先前「wrap + ::before + z-index」的技術），
+   卡片本身負責輕微的呼吸縮放。用 :has() 偵測卡片內的播放按鈕有沒有
+   .is-playing，不用改 voice.js，播放狀態本來就已經是按鈕自己的 class */
+.med-card-wrap {
+  position: relative;
+  width: 100%;
+}
+.med-card-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: rgba(245, 185, 66, 0.4);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.med-card-wrap:has(.med-card__speak.is-playing)::before {
+  animation: med-card-ring 1.6s ease-in-out infinite;
+}
+@keyframes med-card-ring {
+  0% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.28);
+  }
+}
+
+.med-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  background: var(--color-card);
+  border: 1px solid rgba(69, 117, 105, 0.12);
+  border-radius: 100px;
+  box-sizing: border-box;
+}
+
+.med-card__main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 var(--space-4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 選擇器寫成 .card__icon.med-card__icon（兩個 class）確保優先權蓋過
+   .card__icon（單一 class 同優先權時後蓋前）。外框背景（fill 色塊本身）
+   維持 108px 不縮小；縮小的是裡面的 SVG 圖示本身。圖示改成純色填滿樣式
+   （fill，不用線條 stroke），不是裝飾用途，仍搭配下方文字標籤。
+   底色是明確的黃色（不是偏棕的土黃色），圖示改用深色（而非白色）搭配黃底，
+   才能同時維持「看起來是黃色」又通過非文字對比 3:1 下限 */
+.card__icon.med-card__icon {
+  width: 108px;
+  height: 108px;
+  background: #F5B942;
+}
+.card__icon.med-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* 藥名在「3 顆」前面，同一行（不是分兩行上下堆疊）；
+   字級、字重統一，不再讓顆數當成特別放大的焦點數字。
+   跟上方圖示的間距加大（margin-top），不再共用卡片統一的 gap */
+.med-card__title {
+  margin: var(--space-4) 0 0;
+}
+.med-card__name,
+.med-card__count {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+.med-card__name::after {
+  content: " ";
+}
+
+/* 用途標籤：拿掉底色，文字維持橘色（用加深版才能在白底卡片上有足夠對比），
+   跟上方標題的間距縮短 */
+.med-card .purpose-chip {
+  background: none;
+  color: var(--color-accent-deep);
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* 播放按鈕移進卡片內、用途說明下方，拿掉底色（含播放中的綠底提示），
+   跟卡片右上角的角標按鈕分開處理，是另一個獨立的按鈕實例。
+   選擇器疊加 .speak-btn（.speak-btn.med-card__speak）確保優先權蓋過
+   後面定義的 .speak-btn（單一 class 同優先權時後蓋前）——同一種陷阱第四次 */
+/* 帶「播放／暫停」文字標籤的版本：拿掉固定 48px 圓形尺寸，改成自動寬度的
+   藥丸形，圖示＋文字並排。播放中不再用停止方塊疊圖表示狀態（那是給純圖示
+   按鈕用的），改用「暫停」文字本身傳達狀態，圖示全程保持可見、不透明 */
+.speak-btn.med-card__speak {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: auto;
+  height: 48px;
+  /* 水平 padding 加大到 40px：底色是 none，加大 padding 不會讓按鈕看起來
+     變寬（沒有背景色可以露出來），純粹擴大左右可點擊範圍，方便長輩觸控 */
+  padding: 0 40px;
+  border-radius: var(--radius-pill);
+  gap: 10px;
+  background: none;
+}
+.speak-btn.med-card__speak svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--color-text-secondary);
+  opacity: 1;
+}
+.speak-btn.med-card__speak.is-playing {
+  background: none;
+}
+.speak-btn.med-card__speak::after,
+.speak-btn.med-card__speak.is-playing::after {
+  display: none;
+}
+/* 播放／暫停圖示各自獨立的 <svg>，用 .is-playing 切換顯示，
+   不是同一個圖示疊圖，播放中要看到的是真正的暫停圖示（兩條直線） */
+.med-card__speak-icon--pause {
+  display: none;
+}
+.speak-btn.med-card__speak.is-playing .med-card__speak-icon--play {
+  display: none;
+}
+.speak-btn.med-card__speak.is-playing .med-card__speak-icon--pause {
+  display: block;
+  opacity: 1;
+}
+/* 按下時的縮放動畫：base .speak-btn:active 直接設定 transform: scale(0.9)，
+   會整個覆蓋掉這顆按鈕原本用來水平置中的 transform: translateX(-50%)
+   （transform 屬性不會合併，後設定的會整個取代前面的），導致按下瞬間
+   置中偏移量消失、按鈕視覺上跳動一下。這裡用更高優先權的選擇器把
+   兩個 transform 合併寫在同一條規則裡，兩個效果才能同時生效 */
+.speak-btn.med-card__speak:active {
+  transform: translateX(-50%) scale(0.9);
+}
+.med-card__speak-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+.med-card__speak-label--pause {
+  display: none;
+}
+.speak-btn.med-card__speak.is-playing .med-card__speak-label--play {
+  display: none;
+}
+.speak-btn.med-card__speak.is-playing .med-card__speak-label--pause {
+  display: inline;
+}
+
+/* 用 .med-hero .med-hero__reminder 兩層 class 提高優先權，
+   確保蓋過後面定義的 .text-body（19px），不受 CSS 檔案順序影響 */
+.med-hero .med-hero__reminder {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: var(--space-2);
+}
+
+/* 「我吃過藥了」按鈕：維持滿版寬度，上下 padding 縮短
+   （min-height 從全站基準 76px 收斂到 60px，剛好等於 60dp 觸控下限）。
+   選擇器寫成 .btn.med-hero__cta（兩個 class）是為了確保優先權蓋過後面
+   定義的 .btn（單一 class，同優先權時後蓋前），不受 CSS 檔案順序影響——
+   跟前面 .med-hero__reminder 蓋不過 .text-body 是同一種問題。 */
+.btn.med-hero__cta {
+  min-height: 62px;
+}
+
 .card--flush {
   padding: 0;
   overflow: hidden;
+}
+
+/* 柔粉「重要／緊急」裝飾卡片：用於如緊急聯絡等需要被特別看見的情境卡片，
+   邊框改用 accent-b-deep（對淺粉底仍維持清楚的視覺分隔），內文維持
+   --color-text 在暖色淡底上依然達 AA，不受此裝飾色影響 */
+.card--urgent {
+  background: rgba(234, 146, 165, 0.18);
+}
+.card--urgent .card__label,
+.card--urgent .text-body {
+  color: var(--color-text);
 }
 
 .card__label {
@@ -263,6 +534,51 @@ html.embedded .phone-frame__screen .screen {
   font-weight: 500;
   color: var(--color-text-secondary);
   margin: 0 0 var(--space-1);
+}
+
+/* 卡片頂端標題（例如「現在該吃的藥」）：放在卡片最上方，比 card__label 更重、
+   更醒目，用來標明「這張卡片在講什麼時段/狀態」，跟下面的藥名（card__title）
+   分屬不同層級，不再共用同一種灰字樣式 */
+.card__heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 var(--space-2);
+}
+
+/* 用途說明小標籤（取代原本跟 card__heading 同款的灰字），顏色呼應圖示徽章的
+   辨識色，讓「這是什麼用途」一眼可辨，不必逐字閱讀 */
+.purpose-chip {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+}
+.purpose-chip--warm {
+  background: rgba(200, 112, 60, 0.14);
+  color: var(--color-accent-deep);
+}
+.purpose-chip--success {
+  background: rgba(61, 128, 105, 0.14);
+  color: var(--color-success-deep);
+}
+.purpose-chip--muted {
+  background: rgba(69, 117, 105, 0.10);
+  color: var(--color-primary);
+}
+.purpose-chip--earth {
+  background: rgba(169, 137, 92, 0.18);
+  color: var(--color-text);
+}
+.purpose-chip--urgent {
+  background: rgba(234, 146, 165, 0.18);
+  color: var(--color-accent-b-deep);
+}
+.purpose-chip--danger {
+  background: rgba(211, 63, 33, 0.12);
+  color: var(--color-danger);
 }
 
 .card__title {
@@ -279,11 +595,15 @@ html.embedded .phone-frame__screen .screen {
   gap: var(--space-2);
 }
 
+/* 圖示徽章（icon badge）：正圓形實心色塊＋圖示（2026 再改版：從圓角方形改回正圓形，
+   仍是實心彩色，不是空心描邊）。語意邏輯不變（warm/success/muted/danger/earth
+   各自對應的狀態意義維持一致）。圖示本身為裝飾用途（旁邊一定有文字標籤重複語意），
+   非文字內容，對比只需符合 WCAG 1.4.11 非文字對比 3:1 下限即可，各色皆已達標。 */
 .card__icon {
   width: 56px;
   height: 56px;
   flex-shrink: 0;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-badge);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,29 +615,54 @@ html.embedded .phone-frame__screen .screen {
 }
 
 .card__icon--warm {
-  background: rgba(224, 90, 43, 0.12);
+  background: var(--color-accent);
 }
-.card__icon--warm svg { stroke: var(--color-accent); }
+.card__icon--warm svg { stroke: #FFFFFF; }
 
 .card__icon--success {
-  background: rgba(45, 122, 93, 0.12);
+  background: var(--color-success);
 }
-.card__icon--success svg { stroke: var(--color-success); }
+.card__icon--success svg { stroke: #FFFFFF; }
 
 .card__icon--muted {
-  background: rgba(26, 75, 62, 0.08);
+  background: rgba(69, 117, 105, 0.10);
 }
 .card__icon--muted svg { stroke: var(--color-primary); }
 
 .card__icon--danger {
-  background: rgba(211, 63, 33, 0.12);
+  background: var(--color-danger);
 }
-.card__icon--danger svg { stroke: var(--color-danger); }
+.card__icon--danger svg { stroke: #FFFFFF; }
 
 .card__icon--earth {
-  background: rgba(138, 109, 63, 0.14);
+  background: var(--color-swatch-earth);
 }
-.card__icon--earth svg { stroke: var(--color-swatch-earth); }
+.card__icon--earth svg { stroke: #FFFFFF; }
+
+/* 新增：珊瑚粉裝飾徽章，用於「重要／緊急」情境識別（如緊急聯絡卡片），
+   與 --color-danger（系統警示文字／圖示）角色刻意分開，不可混用 */
+.card__icon--urgent {
+  background: var(--color-accent-b);
+}
+.card__icon--urgent svg { stroke: #FFFFFF; }
+
+/* 「今天的藥」卡片辨識色圖示徽章（黃／藍／紅／綠）。圖示改用實心藥丸
+   （白色填色 + 底色縫線），顏色寫在 SVG 屬性上，這裡只需設定徽章底色 */
+.card__icon--yellow {
+  background: var(--color-yellow);
+}
+
+.card__icon--blue {
+  background: var(--color-blue);
+}
+
+.card__icon--red {
+  background: var(--color-red);
+}
+
+.card__icon--green {
+  background: var(--color-green);
+}
 
 /* ============================================================
    辨識色彩配件：家屬選填，呼應實體藥盒既有配色
@@ -330,6 +675,7 @@ html.embedded .phone-frame__screen .screen {
 /* 家屬設定畫面：辨識顏色選色器（純展示用，呼應實體藥盒配色，非狀態語意色） */
 .accent-picker {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-2);
   align-items: center;
 }
@@ -341,9 +687,12 @@ html.embedded .phone-frame__screen .screen {
   cursor: pointer;
   padding: 0;
 }
-.accent-swatch--sun { background: var(--color-accent); }
-.accent-swatch--pine { background: var(--color-primary); }
-.accent-swatch--earth { background: var(--color-swatch-earth); }
+.accent-swatch--yellow { background: var(--color-yellow); }
+.accent-swatch--blue { background: var(--color-blue); }
+.accent-swatch--red { background: var(--color-red); }
+.accent-swatch--green { background: var(--color-green); }
+.accent-swatch--purple { background: var(--color-purple); }
+.accent-swatch--orange { background: var(--color-orange); }
 .accent-swatch--none {
   background: var(--color-secondary);
   border-color: var(--color-primary);
@@ -382,6 +731,7 @@ html.embedded .phone-frame__screen .screen {
 }
 .status-tag--done svg { stroke: #FFFFFF; }
 
+/* 橘色在小字內文上需用加深版才能讓白字達 AAA（7.87:1） */
 .status-tag--pending {
   background: var(--color-accent-deep);
   color: #FFFFFF;
@@ -389,10 +739,18 @@ html.embedded .phone-frame__screen .screen {
 .status-tag--pending svg { stroke: #FFFFFF; }
 
 .status-tag--neutral {
-  background: rgba(26, 75, 62, 0.10);
+  background: rgba(69, 117, 105, 0.10);
   color: var(--color-primary);
 }
 .status-tag--neutral svg { stroke: var(--color-primary); }
+
+/* 新增：珊瑚粉「重要／緊急」狀態標籤（裝飾用途，與 --color-danger 的
+   系統警示語意分開；小字內文需用加深版 accent-b-deep 才能達 AAA 白字對比） */
+.status-tag--urgent {
+  background: var(--color-accent-b-deep);
+  color: #FFFFFF;
+}
+.status-tag--urgent svg { stroke: #FFFFFF; }
 
 /* ============================================================
    按鈕
@@ -426,12 +784,18 @@ html.embedded .phone-frame__screen .screen {
   flex-shrink: 0;
 }
 
+/* 柔陽橙 CTA：白字約 3.6:1，通過大型文字 22px 粗體的 AA 大型文字門檻（3:1） */
 .btn--primary {
   background: var(--color-accent);
   color: #FFFFFF;
   box-shadow: var(--shadow-button);
 }
 .btn--primary svg { stroke: #FFFFFF; }
+
+/* 全圓角按鈕（藥丸形），用於今日提醒首頁等焦點畫面呼應圓形卡片語彙 */
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
 
 .btn--success {
   background: var(--color-success);
@@ -443,9 +807,18 @@ html.embedded .phone-frame__screen .screen {
 .btn--danger {
   background: var(--color-danger);
   color: #FFFFFF;
-  box-shadow: 0 6px 20px rgba(211, 63, 33, 0.28);
+  box-shadow: none;
 }
 .btn--danger svg { stroke: #FFFFFF; }
+
+/* 珊瑚粉「緊急／重要」按鈕：用加深版才能讓白字通過 AAA（7.06:1），
+   基礎珊瑚粉本身對白字僅 3.2:1，不可直接拿來當按鈕底色配白字 */
+.btn--urgent {
+  background: var(--color-accent-b-deep);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-button-urgent);
+}
+.btn--urgent svg { stroke: #FFFFFF; }
 
 .btn--outline {
   background: var(--color-card);
@@ -453,6 +826,19 @@ html.embedded .phone-frame__screen .screen {
   border: 2px solid var(--color-primary);
 }
 .btn--outline svg { stroke: var(--color-primary); }
+
+.btn--dark {
+  background: #000000;
+  color: #FFFFFF;
+  min-height: 62px;
+  height: 62px;
+  font-size: 17px;
+}
+.btn--dark svg {
+  stroke: #FFFFFF;
+  width: 22px;
+  height: 22px;
+}
 
 .btn--ghost {
   background: transparent;
@@ -471,6 +857,14 @@ html.embedded .phone-frame__screen .screen {
   display: flex;
   gap: 8px;
   padding: var(--space-2) var(--space-2) var(--space-4);
+  background: #FFFFFF;
+}
+
+.screen--family .bottom-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  box-shadow: 0 -2px 10px rgba(20, 20, 15, 0.06);
 }
 
 .bottom-nav__item {
@@ -481,8 +875,8 @@ html.embedded .phone-frame__screen .screen {
   gap: 4px;
   padding: 10px 4px;
   border-radius: var(--radius-button);
-  background: rgba(26, 75, 62, 0.06);
-  color: var(--color-primary);
+  background: none;
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
@@ -494,14 +888,14 @@ html.embedded .phone-frame__screen .screen {
 .bottom-nav__item svg {
   width: 24px;
   height: 24px;
-  stroke: var(--color-primary);
+  stroke: var(--color-text-secondary);
 }
 
 .bottom-nav__item[aria-current="page"] {
-  background: var(--color-primary);
-  color: #FFFFFF;
+  background: rgba(200, 112, 60, 0.05);
+  color: var(--color-accent-deep);
 }
-.bottom-nav__item[aria-current="page"] svg { stroke: #FFFFFF; }
+.bottom-nav__item[aria-current="page"] svg { stroke: var(--color-accent-deep); }
 
 /* ============================================================
    時段列表（screen 3, 5 共用）
@@ -517,24 +911,110 @@ html.embedded .phone-frame__screen .screen {
   padding: var(--space-3);
 }
 
-/* 已吃過：視為完成、降低視覺優先度，不再用外框搶注意力 */
+/* .timeslot 用在可點擊列表（如吃藥管理）時改用 <a>，重置連結預設樣式 */
+a.timeslot {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 已吃過：視為完成、降低視覺優先度，不再用外框搶注意力；
+   卡片份量也隨之收斂（padding 略減，非字體縮小），呼應參考版型
+   「重要程度不同、卡片大小跟著不同」的不對稱網格語彙 */
 .timeslot--done {
   border: 2px solid transparent;
   opacity: 0.55;
+  padding: calc(var(--space-3) - 4px) var(--space-3);
 }
 
+/* 需要留意／即將要吃：卡片份量加大，圖示徽章同步放大，
+   在單欄列表中做出視覺份量差異，不必犧牲可讀性改成多欄網格 */
 .timeslot--pending {
   border: 2px solid var(--color-accent);
+  padding: calc(var(--space-3) + 6px) var(--space-3);
+}
+.timeslot--pending .card__icon {
+  width: 64px;
+  height: 64px;
+}
+.timeslot--pending .card__icon svg {
+  width: 34px;
+  height: 34px;
 }
 
-/* 下一個要吃的藥：目前這一輪最需要被看到的卡片，用跟主卡片一致的實線外框強調 */
+/* 下一個要吃的藥：目前這一輪最需要被看到的卡片，用跟主卡片一致的實線外框強調，
+   同樣是本輪最重要的項目，卡片份量最大 */
 .timeslot--active {
-  border: 2px solid var(--color-primary);
-  box-shadow: var(--shadow-card), 0 0 0 1px rgba(26, 75, 62, 0.06);
+  box-shadow: var(--shadow-card);
+  padding: calc(var(--space-3) + 6px) var(--space-3);
+}
+.timeslot--active .card__icon {
+  width: 64px;
+  height: 64px;
+}
+.timeslot--active .card__icon svg {
+  width: 34px;
+  height: 34px;
 }
 
 .timeslot--neutral {
-  border: 2px solid rgba(26, 75, 62, 0.14);
+  box-shadow: var(--shadow-card);
+}
+
+/* 已吃過：整張卡片改用實色背景（不再用淡化透明度表示完成），
+   呼應參考版型「完成的項目直接换色塊」的視覺語言 */
+.timeslot--filled {
+  border: none;
+  box-shadow: var(--shadow-card);
+}
+.timeslot--filled .timeslot__time,
+.timeslot--filled .timeslot__name {
+  color: #FFFFFF;
+}
+.timeslot--filled .card__icon {
+  background: rgba(255, 255, 255, 0.28);
+}
+.timeslot--filled-blue { background: var(--color-blue-deep); }
+.timeslot--filled-red { background: var(--color-red-deep); }
+
+.timeslot--filled-yellow {
+  background: var(--color-yellow);
+}
+.timeslot--filled-yellow .timeslot__time,
+.timeslot--filled-yellow .timeslot__name {
+  color: #FFFFFF;
+}
+/* 圖示徽章改白底黃色圖示（icon fill/stroke 顏色對調，見 HTML），
+   跟其他卡片「白底＋色圖示」的辨識邏輯一致 */
+.timeslot--filled-yellow .card__icon {
+  background: #FFFFFF;
+}
+.timeslot--filled-yellow .timeslot__check {
+  background: rgba(255, 255, 255, 0.75);
+}
+.timeslot--filled-yellow .timeslot__check svg {
+  stroke: var(--color-yellow);
+}
+
+.timeslot__check {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-badge);
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timeslot__check svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-success-deep);
+}
+
+/* 「今天的藥」清單專用：卡片份量加高 */
+.timeslot--tall {
+  padding: calc(var(--space-3) + 10px) var(--space-3);
 }
 
 .timeslot__body {
@@ -547,6 +1027,10 @@ html.embedded .phone-frame__screen .screen {
 
 .timeslot__body .status-tag {
   margin-top: 2px;
+}
+
+.timeslot__body .purpose-chip {
+  margin-top: 0;
 }
 
 .timeslot__time {
@@ -582,6 +1066,12 @@ html.embedded .phone-frame__screen .screen {
   gap: var(--space-2);
 }
 
+/* 編輯次數頁專用：欄位上下間距加大、表單撐滿高度好讓按鈕貼底 */
+.stack--roomy {
+  gap: var(--space-4);
+  flex: 1;
+}
+
 .eyebrow-free {
   /* 無 kicker，標題自己承重 */
 }
@@ -600,8 +1090,61 @@ html.embedded .phone-frame__screen .screen {
 
 .divider {
   height: 1px;
-  background: rgba(26, 75, 62, 0.14);
+  background: rgba(69, 117, 105, 0.14);
   margin: var(--space-1) 0;
+}
+
+/* ============================================================
+   對話框樣式卡片：服用叮嚀等提醒文字獨立呈現，尖角指向上方
+   被提醒的藥物卡片，呼應「陪伴提醒」的語氣而非條列醫囑
+   ============================================================ */
+
+.speech-bubble {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: var(--color-card);
+  border: 1px solid rgba(69, 117, 105, 0.12);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+/* 尖角：旋轉 45 度的正方形，只描上與左邊框，讓尖角看起來跟卡片邊框是同一條線，
+   底色跟卡片一致，蓋掉跟卡片重疊的部分，做出「指向上方」的三角尖角 */
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 40px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-card);
+  border-left: 1px solid rgba(69, 117, 105, 0.12);
+  border-top: 1px solid rgba(69, 117, 105, 0.12);
+  border-radius: 3px 0 0 0;
+  transform: rotate(45deg);
+}
+
+.speech-bubble__icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: rgba(69, 117, 105, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.speech-bubble__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-primary);
+}
+
+.speech-bubble .text-body {
+  flex: 1;
 }
 
 .badge-count {
@@ -612,15 +1155,10 @@ html.embedded .phone-frame__screen .screen {
   height: 28px;
   padding: 0 8px;
   border-radius: var(--radius-pill);
-  background: var(--color-accent);
+  background: var(--color-accent-deep); /* 小字白字需加深版才達 AAA（7.87:1），基礎橘色僅 3.7:1 */
   color: #FFFFFF;
   font-size: 15px;
   font-weight: 700;
-}
-
-/* 家屬端：稍微收斂節奏，維持同一套識別但呼吸感不同 */
-.screen--family .topbar {
-  background: var(--color-primary);
 }
 
 .family-alert-banner {
@@ -659,7 +1197,7 @@ html.embedded .phone-frame__screen .screen {
   height: 48px;
   border-radius: var(--radius-pill);
   border: none;
-  background: rgba(26, 75, 62, 0.08);
+  background: rgba(69, 117, 105, 0.08);
   color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -718,6 +1256,14 @@ html.embedded .phone-frame__screen .screen {
   right: 14px;
 }
 
+/* .med-card 的圓角是 100px（squircle），比一般卡片的 24px 圓角大得多，
+   角標按鈕若沿用一般卡片的 14px 邊距，會落在被圓角切掉的區域外面，
+   視覺上像是突出卡片邊界。改用更大的邊距，確保按鈕整個落在圓角弧線內側 */
+.med-card .speak-btn--corner {
+  top: 26px;
+  right: 26px;
+}
+
 /* 較小尺寸的變體已併入統一的 48px 尺寸，保留 class 相容既有標記 */
 .speak-btn--compact {
   width: 48px;
@@ -730,6 +1276,35 @@ html.embedded .phone-frame__screen .screen {
 .speak-btn--compact::after {
   width: 15px;
   height: 15px;
+}
+
+/* 帶文字標籤的播放按鈕：整排卡片播完後的「聽一遍」次要動作，
+   放在卡片下方，非角落小圖示按鈕，圓形改為藥丸形＋可見文字 */
+.speak-btn--labeled {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--radius-button);
+  padding: 0 var(--space-3);
+  gap: 10px;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+}
+.speak-btn--labeled svg {
+  width: 22px;
+  height: 22px;
+}
+.speak-btn--labeled::after {
+  display: none;
+}
+/* 播放中：藥丸按鈕整個變實心綠底，圖示保持可見並轉白色（不用小方塊疊圖，
+   因為已經有文字＋底色變化足以表達「播放中，再按一次可停止」） */
+.speak-btn--labeled.is-playing {
+  color: #FFFFFF;
+}
+.speak-btn--labeled.is-playing svg {
+  opacity: 1;
+  stroke: #FFFFFF;
 }
 
 .timeslot__actions {
@@ -748,7 +1323,7 @@ html.embedded .phone-frame__screen .screen {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(26, 75, 62, 0.08);
+  background: rgba(69, 117, 105, 0.08);
   padding: 10px var(--space-3);
   overflow: hidden;
 }
@@ -900,9 +1475,8 @@ html.embedded .demo-nav {
   align-items: center;
   gap: var(--space-2);
   background: var(--color-card);
-  border: 2px solid var(--color-primary);
+  border: 1px solid rgba(69, 117, 105, 0.12);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
   padding: var(--space-3);
   text-decoration: none;
   color: var(--color-text);
@@ -940,7 +1514,6 @@ html.embedded .demo-nav {
   background: var(--color-card);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  border: 2px solid rgba(26, 75, 62, 0.14);
   padding: var(--space-3);
   text-decoration: none;
   color: var(--color-text);
@@ -970,8 +1543,8 @@ html.embedded .demo-nav {
   height: 40px;
   border-radius: var(--radius-pill);
   border: none;
-  background: rgba(26, 75, 62, 0.08);
-  color: var(--color-primary);
+  background: #E5E3E0;
+  color: #5A554E;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -980,7 +1553,7 @@ html.embedded .demo-nav {
 .manage-list-row__edit svg {
   width: 19px;
   height: 19px;
-  stroke: var(--color-primary);
+  stroke: #5A554E;
 }
 
 .field {
@@ -1005,7 +1578,7 @@ html.embedded .demo-nav {
   font-size: 18px;
   color: var(--color-text);
   background: var(--color-card);
-  border: 2px solid rgba(26, 75, 62, 0.25);
+  border: 2px solid transparent;
   border-radius: var(--radius-button);
   padding: 12px 14px;
   min-height: 52px;
@@ -1014,9 +1587,9 @@ html.embedded .demo-nav {
 .field input:focus-visible,
 .field select:focus-visible,
 .field textarea:focus-visible {
-  outline: 3px solid var(--color-primary);
+  outline: 3px solid var(--color-accent);
   outline-offset: 1px;
-  border-color: var(--color-primary);
+  border-color: var(--color-accent);
 }
 
 .field textarea {
@@ -1037,9 +1610,8 @@ html.embedded .demo-nav {
   align-items: center;
   gap: var(--space-2);
   background: var(--color-card);
-  border: 2px solid rgba(26, 75, 62, 0.18);
+  border: 1px solid rgba(69, 117, 105, 0.12);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
   padding: var(--space-3);
   cursor: pointer;
 }
@@ -1080,3 +1652,161 @@ html.embedded .demo-nav {
   height: 18px;
   stroke: var(--color-danger);
 }
+
+/* ============================================================
+   兩軌視覺系統 (design guide.md 第五～八節)
+   長輩端（body.track-elder）：硬性下限不變，卡片改用柔和陰影＋細邊框
+   家屬／管理端（body.track-caregiver）：可用 tile-grid／chip-list，
+   可多色並列，不受長輩端單一強調色限制
+   ============================================================ */
+
+/* 無陰影版本：卡片與按鈕一律不用陰影，靠邊框界定卡片範圍 */
+body.track-elder .card,
+body.track-elder .timeslot {
+  border: 1px solid rgba(69, 117, 105, 0.12);
+}
+
+/* .timeslot--pending／--done 既有的語意邊框（強調「下一個要吃」／收斂已完成）
+   維持不變，優先權高於上面的通用細邊框 */
+body.track-elder .timeslot--pending {
+  border: 2px solid var(--color-accent);
+}
+body.track-elder .timeslot--done {
+  border: 2px solid transparent;
+}
+body.track-elder .timeslot--filled {
+  border: none;
+}
+
+/* ------------------------------------------------------------
+   icon-tile 網格：家屬／管理端入口類畫面（管理設定入口、今日總結彙總區）
+   ------------------------------------------------------------ */
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.tile-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background: var(--color-card);
+  border: 1px solid rgba(69, 117, 105, 0.12);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text);
+  min-height: 132px;
+}
+
+.tile-grid__item .card__icon {
+  width: 48px;
+  height: 48px;
+}
+.tile-grid__item .card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.tile-grid__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.tile-grid__sub {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* 統計用 tile（今日總結彙總區）：置中的大數字＋標籤，取代入口 tile 的
+   圖示＋標題＋副標排版 */
+.tile-grid__item--stat {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 108px;
+  gap: 4px;
+}
+.tile-grid__item--stat .tile-grid__stat-num {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0;
+}
+.tile-grid__item--stat .tile-grid__sub {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   彩色 icon chip 清單：家屬／管理端清單類畫面
+   （吃藥管理列表、個人資料設定的聯絡人清單、通知詳情條列項目）
+   ------------------------------------------------------------ */
+
+.chip-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chip-list__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-card);
+  border: 1px solid rgba(69, 117, 105, 0.12);
+  border-radius: var(--radius-card);
+  padding: var(--space-2) var(--space-3);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.chip-list__icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-badge);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chip-list__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.chip-list__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.chip-list__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.chip-list__sub {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.chip-list__trailing {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 家屬／管理端表單精緻化（design guide.md 第七節）：不套 tile/chip 版型，
+   只把欄位邊框從中性灰改為主色系淡色調＋輕微陰影，維持乾淨的純表單版面 */

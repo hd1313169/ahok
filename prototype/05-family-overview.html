@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<script>if (new URLSearchParams(location.search).get('embed') === '1') { document.documentElement.classList.add('embedded'); }</script>
 <title>家屬視角：今日狀態總覽 | Ahok - 年長者的生活管家</title>
 <link rel="icon" type="image/png" href="../img/favicon.png?v=2">
 <link rel="stylesheet" href="styles.css">
@@ -20,12 +20,12 @@
     border-radius: var(--radius-pill);
     font-size: 15px;
     font-weight: 700;
-    background: rgba(255,255,255,0.16);
-    color: #FFFFFF;
+    background: rgba(69, 117, 105, 0.10);
+    color: var(--color-text-secondary);
   }
   .family-tab--active {
-    background: #FFFFFF;
-    color: var(--color-primary);
+    background: var(--color-primary);
+    color: #FFFFFF;
   }
 
   .summary-rollup {
@@ -80,7 +80,7 @@
   }
 </style>
 </head>
-<body class="page-backdrop">
+<body class="page-backdrop track-caregiver">
 
 <div class="phone-frame">
   <div class="phone-frame__island"></div>
@@ -88,17 +88,10 @@
 
 <div class="screen screen--family">
 
-  <header class="topbar" style="padding-bottom:0; justify-content:space-between;">
-    <div style="display:flex; align-items:center; gap:var(--space-2);">
-      <div class="topbar__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 20s-7-4.35-9.5-9A5 5 0 0112 5a5 5 0 019.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
-        </svg>
-      </div>
-      <div class="topbar__text">
-        <span class="topbar__greeting">陳奶奶的今日總結</span>
-        <span class="topbar__date">8 月 17 日・星期一</span>
-      </div>
+  <header class="topbar topbar--hero" style="padding-bottom:0; justify-content:space-between;">
+    <div class="topbar__text">
+      <span class="topbar__greeting">陳奶奶的今日總結</span>
+      <span class="topbar__date">8 月 17 日・星期一</span>
     </div>
     <a href="09-family-settings.html" class="topbar__icon topbar__icon--interactive" style="text-decoration:none;" aria-label="管理設定：新增/修改用藥、回診、資料">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -129,7 +122,7 @@
       </button>
     </div>
 
-    <div class="card card--has-speak summary-rollup">
+    <div class="card card--has-speak" style="text-align:center;">
       <button type="button" class="speak-btn speak-btn--corner" aria-label="播放語音" data-speak="今日進度，三次裡面，已經完成一次。" data-speak-locale="zh">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 9v6h4l5 5V4L8 9H4z"/>
@@ -138,6 +131,21 @@
       </button>
       <p class="summary-rollup__label">今日進度</p>
       <p class="summary-rollup__stat">1 / 3 次已完成</p>
+    </div>
+
+    <div class="tile-grid">
+      <div class="tile-grid__item tile-grid__item--stat">
+        <p class="tile-grid__stat-num" style="color:var(--color-success);">1</p>
+        <p class="tile-grid__sub">已完成</p>
+      </div>
+      <div class="tile-grid__item tile-grid__item--stat">
+        <p class="tile-grid__stat-num" style="color:var(--color-accent-deep);">1</p>
+        <p class="tile-grid__sub">未確認</p>
+      </div>
+      <div class="tile-grid__item tile-grid__item--stat">
+        <p class="tile-grid__stat-num" style="color:var(--color-primary);">1</p>
+        <p class="tile-grid__sub">尚未到時間</p>
+      </div>
     </div>
 
     <details class="detail-disclosure">
@@ -259,6 +267,38 @@
 
   </main>
 
+  <nav class="bottom-nav">
+    <a class="bottom-nav__item" href="05-family-overview.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11.5L12 4l8 7.5"/>
+        <path d="M6 10v9.5a1 1 0 001 1h10a1 1 0 001-1V10"/>
+      </svg>
+      今日總結
+    </a>
+    <a class="bottom-nav__item" href="10-manage-meds.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.5 20.5L20.5 10.5a5.5 5.5 0 10-7.78-7.78L2.72 12.72a5.5 5.5 0 107.78 7.78z"/>
+        <path d="M8.5 8.5l7 7"/>
+      </svg>
+      吃藥管理
+    </a>
+    <a class="bottom-nav__item" href="12-edit-appointment.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="5" width="17" height="15" rx="2"/>
+        <path d="M3.5 9.5h17"/>
+        <path d="M8 3v4M16 3v4"/>
+      </svg>
+      回診管理
+    </a>
+    <a class="bottom-nav__item" href="09-family-settings.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+      </svg>
+      管理設定
+    </a>
+  </nav>
+
 </div>
 
   </div>
@@ -266,7 +306,7 @@
 
 <nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
   <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
   </button>
   <div class="demo-nav__panel">
     <p class="demo-nav__title">Demo 導覽</p>

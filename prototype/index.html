@@ -9,7 +9,7 @@
 <script src="demo-nav.js" defer></script>
 <style>
   body {
-    background: #ECE6DB;
+    background: var(--color-secondary);
     padding: var(--space-5) var(--space-3);
   }
   .gallery-header {
@@ -41,7 +41,7 @@
   .gallery-group h2 {
     font-size: 20px;
     color: var(--color-primary);
-    border-bottom: 2px solid rgba(26,75,62,0.15);
+    border-bottom: 2px solid rgba(15,76,66,0.15);
     padding-bottom: 8px;
   }
   .gallery-grid {
@@ -53,7 +53,7 @@
     background: #FFFFFF;
     border-radius: 28px;
     padding: 10px;
-    box-shadow: 0 10px 30px rgba(26,75,62,0.14);
+    box-shadow: 0 10px 30px rgba(15,76,66,0.14);
     max-width: 430px;
     margin: 0 auto;
     width: 100%;
@@ -90,27 +90,27 @@
     <h2>長輩端</h2>
     <div class="gallery-grid">
       <figure class="device-frame">
-        <iframe src="01-today.html" title="每日提醒首頁"></iframe>
+        <iframe src="01-today.html?embed=1" title="每日提醒首頁"></iframe>
         <figcaption>1. 每日提醒首頁</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="02-confirmed.html" title="已完成確認畫面"></iframe>
+        <iframe src="02-confirmed.html?embed=1" title="已完成確認畫面"></iframe>
         <figcaption>2. 已完成／確認回饋畫面</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="03-medlist.html" title="藥物列表總覽"></iframe>
+        <iframe src="03-medlist.html?embed=1" title="藥物列表總覽"></iframe>
         <figcaption>3. 藥物列表／一天多次提醒總覽</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="04-emergency.html" title="緊急聯絡"></iframe>
+        <iframe src="04-emergency.html?embed=1" title="緊急聯絡"></iframe>
         <figcaption>4. 緊急聯絡／求助</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="07-appointment.html" title="回診提醒"></iframe>
+        <iframe src="07-appointment.html?embed=1" title="回診提醒"></iframe>
         <figcaption>5. 回診提醒</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="08-voice-settings.html" title="語音設定"></iframe>
+        <iframe src="08-voice-settings.html?embed=1" title="語音設定"></iframe>
         <figcaption>6. 語音設定（中文／台語）</figcaption>
       </figure>
     </div>
@@ -120,11 +120,11 @@
     <h2>家屬端</h2>
     <div class="gallery-grid">
       <figure class="device-frame">
-        <iframe src="05-family-overview.html" title="家屬今日總結"></iframe>
+        <iframe src="05-family-overview.html?embed=1" title="家屬今日總結"></iframe>
         <figcaption>7. 今日總結（家屬視角）</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="06-family-notification.html" title="未服藥提醒通知詳情"></iframe>
+        <iframe src="06-family-notification.html?embed=1" title="未服藥提醒通知詳情"></iframe>
         <figcaption>8. 未服藥提醒／通知詳情</figcaption>
       </figure>
     </div>
@@ -134,23 +134,23 @@
     <h2>家屬端・管理設定</h2>
     <div class="gallery-grid">
       <figure class="device-frame">
-        <iframe src="09-family-settings.html" title="管理設定"></iframe>
+        <iframe src="09-family-settings.html?embed=1" title="管理設定"></iframe>
         <figcaption>9. 管理設定入口</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="10-manage-meds.html" title="吃藥管理"></iframe>
+        <iframe src="10-manage-meds.html?embed=1" title="吃藥管理"></iframe>
         <figcaption>10. 吃藥管理列表</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="11-edit-med.html" title="新增／編輯次數"></iframe>
+        <iframe src="11-edit-med.html?embed=1" title="新增／編輯次數"></iframe>
         <figcaption>11. 新增／編輯次數</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="12-edit-appointment.html" title="編輯回診"></iframe>
+        <iframe src="12-edit-appointment.html?embed=1" title="編輯回診"></iframe>
         <figcaption>12. 編輯回診</figcaption>
       </figure>
       <figure class="device-frame">
-        <iframe src="13-profile.html" title="個人資料設定"></iframe>
+        <iframe src="13-profile.html?embed=1" title="個人資料設定"></iframe>
         <figcaption>13. 個人資料設定</figcaption>
       </figure>
     </div>
@@ -158,7 +158,7 @@
 
   <nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
     <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
     </button>
     <div class="demo-nav__panel">
       <p class="demo-nav__title">Demo 導覽</p>

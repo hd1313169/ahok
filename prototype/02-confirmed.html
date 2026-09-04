@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>if (window.self !== window.top) { document.documentElement.classList.add('embedded'); }</script>
+<script>if (new URLSearchParams(location.search).get('embed') === '1') { document.documentElement.classList.add('embedded'); }</script>
 <title>已完成確認 | Ahok - 年長者的生活管家</title>
 <link rel="icon" type="image/png" href="../img/favicon.png?v=2">
 <link rel="stylesheet" href="styles.css">
@@ -11,118 +11,175 @@
 <script src="family-photo.js" defer></script>
 <script src="demo-nav.js" defer></script>
 <style>
-  .confirm-badge {
-    width: 128px;
-    height: 128px;
-    border-radius: 999px;
-    background: var(--color-success);
+  .screen--photo-hero {
+    padding: 0;
+  }
+  .photo-hero {
+    position: relative;
+    flex: 1;
+    min-height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 30px rgba(45, 122, 93, 0.32);
-    margin-bottom: var(--space-3);
+    flex-direction: column;
+    justify-content: flex-end;
     overflow: hidden;
+    background: var(--color-success);
   }
-  .confirm-badge svg {
-    width: 68px;
-    height: 68px;
-    stroke: #FFFFFF;
-  }
-  .confirm-badge--photo {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-  }
-  .confirm-badge__photo {
+  .photo-hero__img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: 0;
+  }
+  .photo-hero__scrim {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+  }
+  .photo-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-4) var(--space-3) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
   }
   .confirm-title {
     font-size: 30px;
     font-weight: 900;
-    color: var(--color-success);
+    color: #FFFFFF;
     margin: 0 0 var(--space-1);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   }
   .confirm-sub {
     font-size: 19px;
-    color: var(--color-text-secondary);
-    margin: 0 0 var(--space-4);
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 var(--space-3);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+  }
+  .photo-hero__content .btn--ghost {
+    color: #FFFFFF;
+  }
+  .photo-hero__content .btn--ghost svg {
+    stroke: #FFFFFF;
+  }
+  .photo-hero__content .card {
+    border: none;
+  }
+  .photo-hero__content .btn--outline {
+    border: none;
+  }
+
+  .hero-audio-btn {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.12s ease, background 0.15s ease;
+  }
+  .hero-audio-btn:active {
+    transform: scale(0.9);
+  }
+  .hero-audio-btn svg {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+  }
+  .hero-audio-btn .icon-pause {
+    opacity: 1;
+    fill: #FFFFFF;
+  }
+  .hero-audio-btn:not(.is-playing) .icon-pause {
+    opacity: 0;
+  }
+  .hero-audio-btn:not(.is-playing) .icon-play {
+    opacity: 1;
+  }
+  .hero-audio-btn.is-playing {
+    background: var(--color-primary);
+  }
+
+  @keyframes rise-up-fade {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .photo-hero__content {
+    opacity: 0;
+    animation: rise-up-fade 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .photo-hero__content {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
   }
 </style>
 </head>
-<body class="page-backdrop">
+<body class="page-backdrop track-elder">
 
 <div class="phone-frame">
   <div class="phone-frame__island"></div>
   <div class="phone-frame__screen">
 
-<div class="screen">
+<div class="screen screen--photo-hero">
 
-  <header class="topbar">
-    <div class="topbar__icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M8 12.5l2.7 2.7L16 9.8"/>
+  <div class="photo-hero">
+    <img class="photo-hero__img" data-hero-photo src="../img/success.jpg" alt="家族合照">
+    <div class="photo-hero__scrim"></div>
+
+    <button type="button" class="hero-audio-btn" data-hero-audio-toggle aria-label="播放語音">
+      <svg class="icon-pause" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>
+      <svg class="icon-play" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9v6h4l5 5V4L8 9H4z"/>
+        <path d="M16.5 8.5a5 5 0 010 7"/>
       </svg>
-    </div>
-    <div class="topbar__text">
-      <span class="topbar__greeting">做得好，陳奶奶！</span>
-      <span class="topbar__date">8 月 17 日・星期一</span>
-    </div>
-  </header>
+    </button>
 
-  <main class="content content--center">
+    <main class="photo-hero__content">
 
-    <div class="confirm-badge" data-confirm-badge>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 13l5 5L19 7"/>
-      </svg>
-    </div>
+      <h1 class="confirm-title">早上藥已吃 ✓</h1>
+      <p class="confirm-sub">您已連續 3 天準時吃藥，真的很棒！</p>
 
-    <h1 class="confirm-title">早上藥已吃 ✓</h1>
-    <p class="confirm-sub">您已連續 3 天準時吃藥，真的很棒！</p>
+      <a class="btn btn--outline btn--pill" href="01-today.html" style="margin-top:var(--space-2); min-height:62px; color:#000000;">
+        返回
+      </a>
 
-    <div class="card card--has-speak" style="width:100%;">
-      <button type="button" class="speak-btn speak-btn--corner" aria-label="播放語音" data-speak="下一次提醒，中午十二點，午餐後的藥。" data-speak-code="02-confirmed-next">
+      <a class="btn btn--ghost" href="01-today.html">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 9v6h4l5 5V4L8 9H4z"/>
-          <path d="M16.5 8.5a5 5 0 010 7"/>
+          <path d="M4 9a8 8 0 1 1 2 5.3"/>
+          <path d="M4 4v5h5"/>
         </svg>
-      </button>
-      <div class="card__row">
-        <div class="card__icon card__icon--success">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 7v5l3.5 2"/>
-          </svg>
-        </div>
-        <div style="text-align:left;">
-          <p class="card__label">下一次提醒</p>
-          <p class="text-body text-body--strong" style="font-size:19px;">中午 12:00・午餐後的藥</p>
-        </div>
-      </div>
-    </div>
+        剛剛按錯了？點這裡收回
+      </a>
 
-    <a class="btn btn--outline" href="01-today.html" style="margin-top:var(--space-2);">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 5l-7 7 7 7"/>
-      </svg>
-      回到每日提醒
-    </a>
-
-    <a class="btn btn--ghost" href="01-today.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 9a8 8 0 1 1 2 5.3"/>
-        <path d="M4 4v5h5"/>
-      </svg>
-      剛剛按錯了？點這裡收回
-    </a>
-
-  </main>
+    </main>
+  </div>
 
 </div>
 
@@ -131,19 +188,50 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var badge = document.querySelector('[data-confirm-badge]');
-    if (!badge || !window.AhokFamilyPhoto) return;
+    var heroPhoto = document.querySelector('[data-hero-photo]');
+    if (!heroPhoto || !window.AhokFamilyPhoto) return;
     var photo = AhokFamilyPhoto.get();
     if (photo) {
-      badge.classList.add('confirm-badge--photo');
-      badge.innerHTML = '<img class="confirm-badge__photo" src="' + photo + '" alt="家族合照">';
+      heroPhoto.src = photo;
+      heroPhoto.hidden = false;
+    } else {
+      heroPhoto.hidden = true;
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var audio = new Audio('../taiwanese_voice/success.mp3');
+    var btn = document.querySelector('[data-hero-audio-toggle]');
+
+    function setPlayingState(isPlaying) {
+      if (!btn) return;
+      btn.classList.toggle('is-playing', isPlaying);
+      btn.setAttribute('aria-label', isPlaying ? '停止播放語音' : '播放語音');
+    }
+
+    audio.addEventListener('play', function () { setPlayingState(true); });
+    audio.addEventListener('pause', function () { setPlayingState(false); });
+    audio.addEventListener('ended', function () { setPlayingState(false); });
+
+    setPlayingState(false);
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        if (audio.paused) {
+          audio.currentTime = 0;
+          audio.play().catch(function () {});
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
     }
   });
 </script>
 
 <nav class="demo-nav" aria-label="Demo 導覽（僅供展示用，非產品內容）">
   <button type="button" class="demo-nav__toggle" aria-label="展示導覽選單" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
   </button>
   <div class="demo-nav__panel">
     <p class="demo-nav__title">Demo 導覽</p>
