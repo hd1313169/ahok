@@ -139,6 +139,28 @@
     });
   }
 
+  // 卡片本身可點擊播放/暫停語音（.med-card 內含唯一一顆 [data-speak] 按鈕），
+  // 點在按鈕本身時交給 bindSpeakButtons 的 document 委派處理，避免重複觸發
+  function bindTappableSpeakCards() {
+    document.querySelectorAll('.med-card').forEach(function (card) {
+      var btn = card.querySelector('[data-speak]');
+      if (!btn) return;
+      card.classList.add('med-card--tappable');
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('[data-speak]')) return;
+        btn.click();
+      });
+      card.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        btn.click();
+      });
+    });
+  }
+
   function updateVoiceLangLabel() {
     var label = document.querySelector('[data-voice-lang-label]');
     if (!label) return;
@@ -166,6 +188,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     bindSpeakButtons();
+    bindTappableSpeakCards();
     updateSpeakButtonsAvailability();
     updateVoiceLangLabel();
     bindVoiceSettingRadios();

@@ -369,6 +369,12 @@ html.embedded .phone-frame__screen .screen {
   box-sizing: border-box;
 }
 
+/* 整張卡片都可點擊播放/暫停語音（見 voice.js bindTappableSpeakCards），
+   不只限於卡片內那顆小按鈕，方便長輩觸控 */
+.med-card--tappable {
+  cursor: pointer;
+}
+
 .med-card__main {
   position: absolute;
   top: 50%;
